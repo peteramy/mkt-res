@@ -1,5 +1,7 @@
 package cn.com.tontron.res.common.message.req;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 /**
  * Created by yangyang on 2018/1/23.
  */
@@ -12,6 +14,20 @@ public class TcpCont {
     private String reqTime;
     private String sign;
     private String version;
+
+    public TcpCont() {
+    }
+
+    public TcpCont(JsonNode jsonNode) {
+        this.svcCode = jsonNode.get("svcCode").asText();
+        this.apiCode = jsonNode.get("apiCode").asText();
+        this.appKey = jsonNode.get("appKey").asText();
+        this.dstSysId = jsonNode.get("dstSysId").asText();
+        this.transactionId = jsonNode.get("transactionId").asText();
+        this.reqTime = jsonNode.get("").asText();
+        this.sign = jsonNode.get("reqTime").asText();
+        this.version = jsonNode.get("version").asText();
+    }
 
     public String getSvcCode() {
         return svcCode;

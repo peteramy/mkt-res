@@ -1,7 +1,5 @@
 package cn.com.tontron.res.common.ms;
 
-import org.springframework.core.annotation.AliasFor;
-
 import java.lang.annotation.*;
 
 /**
@@ -13,5 +11,9 @@ import java.lang.annotation.*;
 public @interface MsApi {
     String svcCode() default "";
 
+    Type type();
+
     String apiCode();
+
+    public enum Type {Inside, Outside}
 }

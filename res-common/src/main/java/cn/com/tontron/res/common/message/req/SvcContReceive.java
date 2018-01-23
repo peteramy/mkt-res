@@ -8,6 +8,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class SvcContReceive {
     private JsonNode requestObject;
 
+    public SvcContReceive() {
+    }
+
+    public SvcContReceive(JsonNode jsonNode) {
+        this.requestObject = jsonNode.get("requestObject");
+    }
+
     public JsonNode getRequestObject() {
         return requestObject;
     }

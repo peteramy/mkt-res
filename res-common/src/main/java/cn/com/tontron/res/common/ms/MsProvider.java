@@ -10,8 +10,4 @@ import java.lang.annotation.*;
 @Documented
 public @interface MsProvider {
     String name();
-
-    Type type();
-
-    public enum Type {Inside, Outside}
 }

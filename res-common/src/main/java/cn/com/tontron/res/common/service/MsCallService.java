@@ -8,7 +8,9 @@ import cn.com.tontron.res.common.ms.MsApi;
 import cn.com.tontron.res.common.ms.MsProvider;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -16,7 +18,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-import org.springframework.amqp.core.Message;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
@@ -37,54 +38,42 @@ public class MsCallService {
     @Autowired
     private EasyJsonComponent easyJsonComponent;
 
-    public MsRspReceiveMsg call(String ms, String api) {
-        return call(ms, api, new HashMap<String, Object>());
+    /*
+     * send
+     */
+    public MsRspReceiveMsg send(String ms, String api) {
+        return send(ms, api, new HashMap<String, Object>());
     }
 
-    public MsRspReceiveMsg call(String ms, String api, String... args) {
+    public MsRspReceiveMsg send(String ms, String api, String... args) {
         if (args == null || args.length == 0 || StringUtils.isEmpty(args[0])) {
-            return call(ms, api);
+            return send(ms, api);
         }
         Assert.isTrue(args.length % 2 == 0, "Args should be dual.");
         Map<String, Object> arg = new HashMap<String, Object>();
         for (int i = 0; i < args.length; i += 2) {
             arg.put(args[i], args[i + 1]);
         }
-        return call(ms, api, arg);
+        return send(ms, api, arg);
     }
 
-    public MsRspReceiveMsg call(String ms, String api, Object args) {
-        return call(ms, api, args, MsProvider.Type.Inside);
+    public MsRspReceiveMsg send(String api, Object args) {
+        return send(null, api, args);
     }
 
-    public MsRspReceiveMsg call(String ms, String api, Object args, MsProvider.Type type) {
+    public MsRspReceiveMsg send(String ms, String api, Object args) {
         TcpCont tcpCont = new TcpCont();
+        tcpCont.setApiCode(api);
+        tcpCont.setSvcCode(api.substring(0, 10));
         // TODO:
-        if (contextType() && MsProvider.Type.Inside.equals(type)) {
-            Map<String, Object> providerMap = applicationContext.getBeansWithAnnotation(MsProvider.class);
-            for (Object provider : providerMap.values()) {
-                MsProvider msProvider = provider.getClass().getAnnotation(MsProvider.class);
-                if (msProvider.name().equals(ms) && msProvider.type().equals(type)) {
-                    Method[] methods = provider.getClass().getDeclaredMethods();
-                    for (Method method : methods) {
-                        MsApi msApi = method.getAnnotation(MsApi.class);
-                        if (msApi != null && msApi.apiCode().equals(api)) {
-                            SvcContReceive contReceive = new SvcContReceive();
-                            JsonNode jsonNode = easyJsonComponent.readTree(easyJsonComponent.toJson(args));
-                            contReceive.setRequestObject(jsonNode);
-                            MsReqReceiveMsg msg = new MsReqReceiveMsg(tcpCont, contReceive);
-                            MsRspSendMsg rspMsg = null;
-                            try {
-                                rspMsg = (MsRspSendMsg) method.invoke(provider, msg);
-                            } catch (IllegalAccessException | InvocationTargetException e) {
-                                e.printStackTrace();
-                            }
-                            String repStr = easyJsonComponent.toJson(rspMsg);
-                            return repAssemble(repStr);
-                        }
-                    }
-                }
-            }
+        if (StringUtils.isNotEmpty(ms) && contextType()) {
+            SvcContReceive contReceive = new SvcContReceive();
+            JsonNode jsonNode = easyJsonComponent.readTree(easyJsonComponent.toJson(args));
+            contReceive.setRequestObject(jsonNode);
+            MsReqReceiveMsg msg = new MsReqReceiveMsg(tcpCont, contReceive);
+            MsRspSendMsg rspMsg = process(ms, msg, true);
+            String repStr = easyJsonComponent.toJson(rspMsg);
+            return rspAssemble(repStr);
         } else {// MQ
             AmqpTemplate template = applicationContext.getBean(AmqpTemplate.class);
             if (template != null) {
@@ -99,11 +88,12 @@ public class MsCallService {
                     e.printStackTrace();
                 }
                 Message message = new Message(msgBody, messageProperties);
-                Message respMsg = template.sendAndReceive(message);
+                ImmutablePair<String, String> routingInfo = mqRoutingInfo(ms, api);
+                Message respMsg = template.sendAndReceive(routingInfo.getLeft(), routingInfo.getRight(), message);
                 if (respMsg != null && respMsg.getBody() != null && respMsg.getBody().length > 0) {
                     try {
                         String rspBody = new String(respMsg.getBody(), "utf-8");
-                        return repAssemble(rspBody);
+                        return rspAssemble(rspBody);
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -113,18 +103,75 @@ public class MsCallService {
         return null;
     }
 
-    public MsRspSendMsg repAssemble(Object o, MsReqReceiveMsg req) {
+    public MsRspSendMsg rspAssemble(Object o, MsReqReceiveMsg req) {
         MsRspSendMsg msRspSendMsg = new MsRspSendMsg(o, req);
         msRspSendMsg.getTcpCont().setReqTime(sdf.format(new Date()));
         return msRspSendMsg;
     }
 
-    private MsRspReceiveMsg repAssemble(String str) {
+    private MsRspReceiveMsg rspAssemble(String str) {
         JsonNode node = easyJsonComponent.readTree(str);
         return new MsRspReceiveMsg(node);
     }
 
+    /*
+     * receive
+     */
+    public Message receive(Message message) {
+        try {
+            String msgStr = new String(message.getBody(), "utf8");
+            JsonNode msgNode = easyJsonComponent.readTree(msgStr);
+            MsReqReceiveMsg receiveMsg = new MsReqReceiveMsg(msgNode);
+            MsRspSendMsg rspSendMsg = process(receiveMsg);
+            MessageProperties messageProperties = new MessageProperties();
+            byte[] msgBody = new byte[0];
+            try {
+                msgBody = easyJsonComponent.toJson(rspSendMsg).getBytes("utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            Message msg = new Message(msgBody, messageProperties);
+            return msg;
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    private MsRspSendMsg process(MsReqReceiveMsg msg) {
+        return process(null, msg, msg.getTcpCont().getApiCode().startsWith("999999"));
+    }
+
+    private MsRspSendMsg process(String ms, MsReqReceiveMsg msg, boolean inside) {
+        Map<String, Object> providerMap = applicationContext.getBeansWithAnnotation(MsProvider.class);
+        for (Object provider : providerMap.values()) {
+            MsProvider msProvider = provider.getClass().getAnnotation(MsProvider.class);
+            if (StringUtils.isEmpty(ms) || msProvider.name().equals(ms)) {
+                Method[] methods = provider.getClass().getDeclaredMethods();
+                for (Method method : methods) {
+                    MsApi msApi = method.getAnnotation(MsApi.class);
+                    // 内部可以调用外部，外部不能调用内部
+                    if (msApi != null && msApi.apiCode().equals(msg.getTcpCont().getApiCode())
+                            && (inside || MsApi.Type.Outside.equals(msApi.type()))) {
+                        MsRspSendMsg rspMsg = null;
+                        try {
+                            rspMsg = (MsRspSendMsg) method.invoke(provider, msg);
+                        } catch (IllegalAccessException | InvocationTargetException e) {
+                            e.printStackTrace();
+                        }
+                        return rspMsg;
+                    }
+                }
+            }
+        }
+        return MsRspSendMsg.MethodNotFount(msg);
+    }
+
     private boolean contextType() {
         return "context".equals(environment.getProperty("spring.ms.modal"));
+    }
+
+    private ImmutablePair<String, String> mqRoutingInfo(String ms, String apiKey) {
+        // TODO
+        return new ImmutablePair<>("", "");
     }
 }

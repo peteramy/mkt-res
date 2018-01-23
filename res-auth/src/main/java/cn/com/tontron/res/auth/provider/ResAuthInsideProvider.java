@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by yangyang on 2018/1/23.
  */
-@MsProvider(name = "auth", type = MsProvider.Type.Inside)
+@MsProvider(name = "auth")
 @Component
 public class ResAuthInsideProvider {
     @Autowired
@@ -21,10 +21,10 @@ public class ResAuthInsideProvider {
     @Autowired
     private MsCallService msCallService;
 
-    @MsApi(apiCode = "aaa")
+    @MsApi(type = MsApi.Type.Inside, apiCode = "99999900100001")
     public MsRspSendMsg findUserByName(MsReqReceiveMsg reqMsg) {
         String username = reqMsg.getSvcCont().getRequestObject().get("username").asText();
         SysUser user = userService.findByName(username);
-        return msCallService.repAssemble(user, reqMsg);
+        return msCallService.rspAssemble(user, reqMsg);
     }
 }
