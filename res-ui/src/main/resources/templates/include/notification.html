@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="notification">
+    <div class="alert alert-success alert-dismissable" th:each="msg:${sessionMsgHandler.pop('global_success')}">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <i th:text="${msg}"></i> <a href="#" class="alert-link">Alert Link</a>.
+    </div>
+    <div class="alert alert-danger alert-dismissable" th:each="msg:${sessionMsgHandler.pop('global_error')}">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <i th:text="${msg}"></i> <a href="#" class="alert-link">Alert Link</a>.
+    </div>
+    <div class="alert alert-info alert-dismissable" th:each="msg:${sessionMsgHandler.pop('global_message')}">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <i th:text="${msg}"></i> <a href="#" class="alert-link">Alert Link</a>.
+    </div>
+</div>
+</body>
+</html>
