@@ -1,4 +1,4 @@
-package cn.com.tontron.res.auth.entity;
+package cn.com.tontron.res.ims.entity;
 
 import cn.com.tontron.res.common.base.entity.AutoModel;
 

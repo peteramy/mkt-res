@@ -1,5 +1,7 @@
 package cn.com.tontron.res.common.ms;
 
+import cn.com.tontron.res.common.base.entity.ResMs;
+
 import java.lang.annotation.*;
 
 /**
@@ -9,5 +11,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface MsProvider {
-    String name();
+    ResMs ms();
 }

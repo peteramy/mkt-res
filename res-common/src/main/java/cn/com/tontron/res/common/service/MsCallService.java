@@ -1,5 +1,6 @@
 package cn.com.tontron.res.common.service;
 
+import cn.com.tontron.res.common.base.entity.ResMs;
 import cn.com.tontron.res.common.component.EasyJsonComponent;
 import cn.com.tontron.res.common.message.req.*;
 import cn.com.tontron.res.common.message.rsp.MsRspReceiveMsg;
@@ -41,11 +42,11 @@ public class MsCallService {
     /*
      * send
      */
-    public MsRspReceiveMsg send(String ms, String api) {
+    public MsRspReceiveMsg send(ResMs ms, String api) {
         return send(ms, api, new HashMap<String, Object>());
     }
 
-    public MsRspReceiveMsg send(String ms, String api, String... args) {
+    public MsRspReceiveMsg send(ResMs ms, String api, String... args) {
         if (args == null || args.length == 0 || StringUtils.isEmpty(args[0])) {
             return send(ms, api);
         }
@@ -61,12 +62,12 @@ public class MsCallService {
         return send(null, api, args);
     }
 
-    public MsRspReceiveMsg send(String ms, String api, Object args) {
+    public MsRspReceiveMsg send(ResMs ms, String api, Object args) {
         TcpCont tcpCont = new TcpCont();
         tcpCont.setApiCode(api);
         tcpCont.setSvcCode(api.substring(0, 10));
         // TODO:
-        if (StringUtils.isNotEmpty(ms) && contextType()) {
+        if (ms != null && contextType()) {
             SvcContReceive contReceive = new SvcContReceive();
             JsonNode jsonNode = easyJsonComponent.readTree(easyJsonComponent.toJson(args));
             contReceive.setRequestObject(jsonNode);
@@ -117,12 +118,12 @@ public class MsCallService {
     /*
      * receive
      */
-    public Message receive(Message message) {
+    public Message receive(ResMs ms, Message message) {
         try {
             String msgStr = new String(message.getBody(), "utf8");
             JsonNode msgNode = easyJsonComponent.readTree(msgStr);
             MsReqReceiveMsg receiveMsg = new MsReqReceiveMsg(msgNode);
-            MsRspSendMsg rspSendMsg = process(receiveMsg);
+            MsRspSendMsg rspSendMsg = process(ms, receiveMsg);
             MessageProperties messageProperties = new MessageProperties();
             byte[] msgBody = new byte[0];
             try {
@@ -137,15 +138,15 @@ public class MsCallService {
         }
     }
 
-    private MsRspSendMsg process(MsReqReceiveMsg msg) {
-        return process(null, msg, msg.getTcpCont().getApiCode().startsWith("999999"));
+    private MsRspSendMsg process(ResMs ms, MsReqReceiveMsg msg) {
+        return process(ms, msg, msg.getTcpCont().getApiCode().startsWith("999999"));
     }
 
-    private MsRspSendMsg process(String ms, MsReqReceiveMsg msg, boolean inside) {
+    private MsRspSendMsg process(ResMs ms, MsReqReceiveMsg msg, boolean inside) {
         Map<String, Object> providerMap = applicationContext.getBeansWithAnnotation(MsProvider.class);
         for (Object provider : providerMap.values()) {
             MsProvider msProvider = provider.getClass().getAnnotation(MsProvider.class);
-            if (StringUtils.isEmpty(ms) || msProvider.name().equals(ms)) {
+            if (msProvider.ms().equals(ms)) {
                 Method[] methods = provider.getClass().getDeclaredMethods();
                 for (Method method : methods) {
                     MsApi msApi = method.getAnnotation(MsApi.class);
@@ -170,7 +171,7 @@ public class MsCallService {
         return "context".equals(environment.getProperty("spring.ms.modal"));
     }
 
-    private ImmutablePair<String, String> mqRoutingInfo(String ms, String apiKey) {
+    private ImmutablePair<String, String> mqRoutingInfo(ResMs ms, String apiKey) {
         // TODO
         return new ImmutablePair<>("", "");
     }

@@ -1,7 +1,7 @@
 package cn.com.tontron.res.auth.service;
 
+import cn.com.tontron.res.auth.entity.AuthSysUser;
 import cn.com.tontron.res.auth.entity.QSysUser;
-import cn.com.tontron.res.auth.entity.SysUser;
 import cn.com.tontron.res.common.base.form.SearchForm;
 import cn.com.tontron.res.common.base.jpa.JpaRepositoryImpl;
 import cn.com.tontron.res.common.base.page.TablePage;
@@ -16,15 +16,15 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class SysUserService {
+public class AuthSysUserService {
     @Resource
-    private JpaRepositoryImpl<SysUser, Long> sysUserRepo;
+    private JpaRepositoryImpl<AuthSysUser, Long> sysUserRepo;
 
-    public SysUser findByName(String s) {
+    public AuthSysUser findByName(String s) {
         return sysUserRepo.findOne(QSysUser.sysUser.username.eq(s));
     }
 
-    public List<SysUser> findAll() {
+    public List<AuthSysUser> findAll() {
         return sysUserRepo.findAll();
     }
 
@@ -33,7 +33,7 @@ public class SysUserService {
     }
 
     public void randomSave() {
-        SysUser user = new SysUser();
+        AuthSysUser user = new AuthSysUser();
         user.setUsername("test" + Math.random());
         user.setPassword("123");
         sysUserRepo.save(user);

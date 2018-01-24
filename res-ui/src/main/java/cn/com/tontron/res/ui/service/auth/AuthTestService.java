@@ -1,5 +1,6 @@
 package cn.com.tontron.res.ui.service.auth;
 
+import cn.com.tontron.res.common.base.entity.ResMs;
 import cn.com.tontron.res.common.component.EasyJsonComponent;
 import cn.com.tontron.res.common.message.rsp.MsRspReceiveMsg;
 import cn.com.tontron.res.common.service.MsCallService;
@@ -20,7 +21,7 @@ public class AuthTestService {
     private MsCallService msCallService;
 
     public JsonNode findByUsername(String s) {
-        MsRspReceiveMsg o = msCallService.send("auth", "99999900100001", "username", s);
+        MsRspReceiveMsg o = msCallService.send(ResMs.auth, "99999900100001", "username", s);
         return o.getSvcCont().getResultObject();
     }
 }
