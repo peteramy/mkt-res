@@ -1,7 +1,7 @@
 package cn.com.tontron.res.auth.service;
 
 import cn.com.tontron.res.auth.entity.AuthSysUser;
-import cn.com.tontron.res.auth.entity.QSysUser;
+import cn.com.tontron.res.auth.entity.QAuthSysUser;
 import cn.com.tontron.res.common.base.form.SearchForm;
 import cn.com.tontron.res.common.base.jpa.JpaRepositoryImpl;
 import cn.com.tontron.res.common.base.page.TablePage;
@@ -21,7 +21,7 @@ public class AuthSysUserService {
     private JpaRepositoryImpl<AuthSysUser, Long> sysUserRepo;
 
     public AuthSysUser findByName(String s) {
-        return sysUserRepo.findOne(QSysUser.sysUser.username.eq(s));
+        return sysUserRepo.findOne(QAuthSysUser.authSysUser.username.eq(s));
     }
 
     public List<AuthSysUser> findAll() {
