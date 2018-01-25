@@ -124,7 +124,7 @@ public class MsCallService {
             JsonNode msgNode = easyJsonComponent.readTree(msgStr);
             MsReqReceiveMsg receiveMsg = new MsReqReceiveMsg(msgNode);
             MsRspSendMsg rspSendMsg = process(ms, receiveMsg);
-            MessageProperties messageProperties = new MessageProperties();
+            MessageProperties messageProperties = message.getMessageProperties();
             byte[] msgBody = new byte[0];
             try {
                 msgBody = easyJsonComponent.toJson(rspSendMsg).getBytes("utf-8");
