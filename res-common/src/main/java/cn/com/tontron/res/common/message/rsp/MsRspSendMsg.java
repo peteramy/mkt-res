@@ -37,13 +37,7 @@ public class MsRspSendMsg {
     }
 
     public static MsRspSendMsg MethodNotFount(MsReqReceiveMsg req) {
-        MsRspSendMsg msg = new MsRspSendMsg();
-        msg.tcpCont = new TcpCont();
-        msg.tcpCont.setTransactionId(req.getTcpCont().getTransactionId());
-        msg.svcCont = new SvcContSend();
-        msg.svcCont.setResultCode("-1");
-        msg.svcCont.setResultMsg("Method not found.");
-        return msg;
+        return ProcessError(req, "Method not found.");
     }
 
     public static MsRspSendMsg ProcessError(MsReqReceiveMsg receiveMsg, String message) {
