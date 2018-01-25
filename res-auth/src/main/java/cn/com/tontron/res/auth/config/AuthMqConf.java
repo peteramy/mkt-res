@@ -18,7 +18,7 @@ import java.util.HashMap;
  */
 @Configuration
 public class AuthMqConf {
-    @Value("${res.auth.mq.name}")
+    @Value("${res.ms.auth.mq.name}")
     private String queueName;
     @Value("${res.mq.exchange}")
     private String exchange;

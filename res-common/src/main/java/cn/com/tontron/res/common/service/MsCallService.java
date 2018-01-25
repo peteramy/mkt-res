@@ -41,41 +41,46 @@ public class MsCallService {
     private EasyJsonComponent easyJsonComponent;
     @Value("${spring.ms.modal}")
     private String msModal;
+    @Value("${res.mq.exchange}")
+    private String mqExchange;
+    @Value("${res.appkey.prefix}")
+    private String appkeyPrefix;
 
     /*
      * send
      */
-    public MsRspReceiveMsg send(ResMs ms, String api) {
-        return send(ms, api, new HashMap<String, Object>());
+    public MsRspReceiveMsg send(ResMs from, ResMs to, String api) {
+        return send(from, to, api, new HashMap<String, Object>());
     }
 
-    public MsRspReceiveMsg send(ResMs ms, String api, String... args) {
+    public MsRspReceiveMsg send(ResMs from, ResMs to, String api, String... args) {
         if (args == null || args.length == 0 || StringUtils.isEmpty(args[0])) {
-            return send(ms, api);
+            return send(from, to, api);
         }
         Assert.isTrue(args.length % 2 == 0, "Args should be dual.");
         Map<String, Object> arg = new HashMap<String, Object>();
         for (int i = 0; i < args.length; i += 2) {
             arg.put(args[i], args[i + 1]);
         }
-        return send(ms, api, arg);
+        return send(from, to, api, arg);
     }
 
-    public MsRspReceiveMsg send(String api, Object args) {
-        return send(null, api, args);
+    public MsRspReceiveMsg send(ResMs from, String api, Object args) {
+        return send(from, null, api, args);
     }
 
-    public MsRspReceiveMsg send(ResMs ms, String api, Object args) {
+    public MsRspReceiveMsg send(ResMs from, ResMs to, String api, Object args) {
         TcpCont tcpCont = new TcpCont();
         tcpCont.setApiCode(api);
         tcpCont.setSvcCode(api.substring(0, 10));
+        tcpCont.setAppKey(environment.getProperty("res.ms." + from.name() + ".appkey"));
         // TODO:
-        if (ms != null && contextType()) {
+        if (to != null && contextType()) {
             SvcContReceive contReceive = new SvcContReceive();
             JsonNode jsonNode = easyJsonComponent.readTree(easyJsonComponent.toJson(args));
             contReceive.setRequestObject(jsonNode);
             MsReqReceiveMsg msg = new MsReqReceiveMsg(tcpCont, contReceive);
-            MsRspSendMsg rspMsg = process(ms, msg, MsProvider.Type.Share);
+            MsRspSendMsg rspMsg = process(to, msg, MsProvider.Type.Share);
             String repStr = easyJsonComponent.toJson(rspMsg);
             return rspAssemble(repStr);
         } else {// MQ
@@ -92,7 +97,7 @@ public class MsCallService {
                     e.printStackTrace();
                 }
                 Message message = new Message(msgBody, messageProperties);
-                ImmutablePair<String, String> routingInfo = mqRoutingInfo(ms, api);
+                ImmutablePair<String, String> routingInfo = mqRoutingInfo(to, api);
                 Message respMsg = template.sendAndReceive(routingInfo.getLeft(), routingInfo.getRight(), message);
                 if (respMsg != null && respMsg.getBody() != null && respMsg.getBody().length > 0) {
                     try {
@@ -122,27 +127,33 @@ public class MsCallService {
      * receive
      */
     public Message receive(ResMs ms, Message message) {
+        MsRspSendMsg rspSendMsg;
         try {
             String msgStr = new String(message.getBody(), "utf8");
             JsonNode msgNode = easyJsonComponent.readTree(msgStr);
             MsReqReceiveMsg receiveMsg = new MsReqReceiveMsg(msgNode);
-            MsRspSendMsg rspSendMsg = process(ms, receiveMsg);
-            MessageProperties messageProperties = message.getMessageProperties();
-            byte[] msgBody = new byte[0];
             try {
-                msgBody = easyJsonComponent.toJson(rspSendMsg).getBytes("utf-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
+                rspSendMsg = process(ms, receiveMsg);
+            } catch (Exception e) {
+                rspSendMsg = MsRspSendMsg.ProcessError(receiveMsg, e.getMessage());
             }
-            Message msg = new Message(msgBody, messageProperties);
-            return msg;
         } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e.getMessage());
+            rspSendMsg = MsRspSendMsg.ParseError(e.getMessage());
         }
+        MessageProperties messageProperties = message.getMessageProperties();
+        byte[] msgBody = new byte[0];
+        try {
+            msgBody = easyJsonComponent.toJson(rspSendMsg).getBytes("utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        Message msg = new Message(msgBody, messageProperties);
+        return msg;
     }
 
     private MsRspSendMsg process(ResMs ms, MsReqReceiveMsg msg) {
-        return process(ms, msg, msg.getTcpCont().getAppKey().toLowerCase().startsWith("mktres") ? MsProvider.Type.Share : MsProvider.Type.Business);
+        Assert.isTrue(StringUtils.isNotEmpty(msg.getTcpCont().getAppKey()), "App key cannot be null");
+        return process(ms, msg, msg.getTcpCont().getAppKey().toLowerCase().startsWith(appkeyPrefix) ? MsProvider.Type.Share : MsProvider.Type.Business);
     }
 
     private MsRspSendMsg process(ResMs ms, MsReqReceiveMsg msg, MsProvider.Type type) {
@@ -175,9 +186,13 @@ public class MsCallService {
 
     private ImmutablePair<String, String> mqRoutingInfo(ResMs ms, String apiKey) {
         if (ms != null) { // 中心内部调用
+            String routingKey = environment.getProperty("res.ms." + ms.name() + ".mq.name");
+            Assert.isTrue(StringUtils.isNotEmpty(routingKey),
+                    "Cannot find routing key for ms " + ms.name());
+            return new ImmutablePair<>(mqExchange, routingKey);
         } else { // 通过apiKey获取对应的中心的exchange和routingKey
+            // TODO
         }
-        // TODO
         return new ImmutablePair<>("", "");
     }
 }

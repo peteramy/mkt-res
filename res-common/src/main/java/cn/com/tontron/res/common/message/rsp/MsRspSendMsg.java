@@ -43,6 +43,25 @@ public class MsRspSendMsg {
         msg.svcCont = new SvcContSend();
         msg.svcCont.setResultCode("-1");
         msg.svcCont.setResultMsg("Method not found.");
-        return null;
+        return msg;
+    }
+
+    public static MsRspSendMsg ProcessError(MsReqReceiveMsg receiveMsg, String message) {
+        MsRspSendMsg msg = new MsRspSendMsg();
+        msg.tcpCont = new TcpCont();
+        msg.tcpCont.setTransactionId(receiveMsg.getTcpCont().getTransactionId());
+        msg.svcCont = new SvcContSend();
+        msg.svcCont.setResultCode("-1");
+        msg.svcCont.setResultMsg(message);
+        return msg;
+    }
+
+    public static MsRspSendMsg ParseError(String message) {
+        MsRspSendMsg msg = new MsRspSendMsg();
+        msg.tcpCont = new TcpCont();
+        msg.svcCont = new SvcContSend();
+        msg.svcCont.setResultCode("-1");
+        msg.svcCont.setResultMsg(message);
+        return msg;
     }
 }

@@ -19,14 +19,14 @@ public class TcpCont {
     }
 
     public TcpCont(JsonNode jsonNode) {
-        this.svcCode = jsonNode.get("svcCode").asText();
-        this.apiCode = jsonNode.get("apiCode").asText();
-        this.appKey = jsonNode.get("appKey").asText();
-        this.dstSysId = jsonNode.get("dstSysId").asText();
-        this.transactionId = jsonNode.get("transactionId").asText();
-        this.reqTime = jsonNode.get("").asText();
-        this.sign = jsonNode.get("reqTime").asText();
-        this.version = jsonNode.get("version").asText();
+        this.svcCode = jsonNode.get("svcCode") == null ? null : jsonNode.get("svcCode").asText();
+        this.apiCode = jsonNode.get("apiCode") == null ? null : jsonNode.get("apiCode").asText();
+        this.appKey = jsonNode.get("appKey") == null ? null : jsonNode.get("appKey").asText();
+        this.dstSysId = jsonNode.get("dstSysId") == null ? null : jsonNode.get("dstSysId").asText();
+        this.transactionId = jsonNode.get("transactionId") == null ? null : jsonNode.get("transactionId").asText();
+        this.reqTime = jsonNode.get("reqTime") == null ? null : jsonNode.get("reqTime").asText();
+        this.sign = jsonNode.get("sign") == null ? null : jsonNode.get("sign").asText();
+        this.version = jsonNode.get("version") == null ? null : jsonNode.get("version").asText();
     }
 
     public String getSvcCode() {

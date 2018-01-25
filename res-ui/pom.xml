@@ -34,6 +34,8 @@
             <artifactId>res-common</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <!-- 单独部署启动时去掉以下依赖 -->
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
             <artifactId>res-auth</artifactId>
@@ -62,6 +64,11 @@
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
             <artifactId>res-umms</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.com.tontron.res</groupId>
+            <artifactId>res-lgms</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
