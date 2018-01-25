@@ -17,6 +17,7 @@
         <module>res-tems</module>
         <module>res-common</module>
         <module>res-auth</module>
+        <module>res-lgms</module>
     </modules>
 
     <parent>

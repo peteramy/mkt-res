@@ -11,9 +11,5 @@ import java.lang.annotation.*;
 public @interface MsApi {
     String svcCode() default "";
 
-    Type type();
-
     String apiCode();
-
-    public enum Type {Inside, Outside}
 }

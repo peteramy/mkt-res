@@ -12,4 +12,8 @@ import java.lang.annotation.*;
 @Documented
 public @interface MsProvider {
     ResMs ms();
+
+    Type type();
+
+    public enum Type {Share, Business, Data} // 数据层的设计有点不靠谱
 }

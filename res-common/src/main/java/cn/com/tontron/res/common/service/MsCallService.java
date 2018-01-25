@@ -14,6 +14,7 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,8 @@ public class MsCallService {
     private Environment environment;
     @Autowired
     private EasyJsonComponent easyJsonComponent;
+    @Value("${spring.ms.modal}")
+    private String msModal;
 
     /*
      * send
@@ -72,7 +75,7 @@ public class MsCallService {
             JsonNode jsonNode = easyJsonComponent.readTree(easyJsonComponent.toJson(args));
             contReceive.setRequestObject(jsonNode);
             MsReqReceiveMsg msg = new MsReqReceiveMsg(tcpCont, contReceive);
-            MsRspSendMsg rspMsg = process(ms, msg, true);
+            MsRspSendMsg rspMsg = process(ms, msg, MsProvider.Type.Share);
             String repStr = easyJsonComponent.toJson(rspMsg);
             return rspAssemble(repStr);
         } else {// MQ
@@ -139,20 +142,19 @@ public class MsCallService {
     }
 
     private MsRspSendMsg process(ResMs ms, MsReqReceiveMsg msg) {
-        return process(ms, msg, msg.getTcpCont().getApiCode().startsWith("999999"));
+        return process(ms, msg, msg.getTcpCont().getAppKey().toLowerCase().startsWith("mktres") ? MsProvider.Type.Share : MsProvider.Type.Business);
     }
 
-    private MsRspSendMsg process(ResMs ms, MsReqReceiveMsg msg, boolean inside) {
+    private MsRspSendMsg process(ResMs ms, MsReqReceiveMsg msg, MsProvider.Type type) {
         Map<String, Object> providerMap = applicationContext.getBeansWithAnnotation(MsProvider.class);
         for (Object provider : providerMap.values()) {
             MsProvider msProvider = provider.getClass().getAnnotation(MsProvider.class);
-            if (msProvider.ms().equals(ms)) {
+            // 内部可以调用外部，外部不能调用内部
+            if (msProvider.ms().equals(ms) && (MsProvider.Type.Share.equals(msProvider.type()) || msProvider.type().equals(type))) {
                 Method[] methods = provider.getClass().getDeclaredMethods();
                 for (Method method : methods) {
                     MsApi msApi = method.getAnnotation(MsApi.class);
-                    // 内部可以调用外部，外部不能调用内部
-                    if (msApi != null && msApi.apiCode().equals(msg.getTcpCont().getApiCode())
-                            && (inside || MsApi.Type.Outside.equals(msApi.type()))) {
+                    if (msApi != null && msApi.apiCode().equals(msg.getTcpCont().getApiCode())) {
                         MsRspSendMsg rspMsg = null;
                         try {
                             rspMsg = (MsRspSendMsg) method.invoke(provider, msg);
@@ -168,10 +170,13 @@ public class MsCallService {
     }
 
     private boolean contextType() {
-        return "context".equals(environment.getProperty("spring.ms.modal"));
+        return "context".equals(msModal);
     }
 
     private ImmutablePair<String, String> mqRoutingInfo(ResMs ms, String apiKey) {
+        if (ms != null) { // 中心内部调用
+        } else { // 通过apiKey获取对应的中心的exchange和routingKey
+        }
         // TODO
         return new ImmutablePair<>("", "");
     }
