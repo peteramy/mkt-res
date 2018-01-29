@@ -3,8 +3,7 @@ package cn.com.tontron.res.ivms.entity;
 import cn.com.tontron.res.common.base.entity.MktResModel;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by yangyang on 2018/1/29.
@@ -12,6 +11,9 @@ import javax.persistence.Table;
 @Table(name = "inv_inst")
 @Entity
 public class MktResInvInst extends MktResModel { // 营销资源发票实例
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long mktResInvInstId; // 营销资源发票 实例标识：营销资源实例的标 识，主键
     @Length(max = 20)
     private String invoiceCode; // 发票代码：记录营销资源实例的 发票代码，计费建议。
     private Long invStaNum; // 起始票号：记录一本非专票的发 票实例的最初的票 号。
@@ -28,6 +30,14 @@ public class MktResInvInst extends MktResModel { // 营销资源发票实例
     private Long lanId; // 本地网标识:记录本地网标识。
     private Long regionId; // 区域标识:记录区域标识。指向公共管理区域标识
     private Long partnerId; // 合作伙伴标识：资源供应商 ID
+
+    public Long getMktResInvInstId() {
+        return mktResInvInstId;
+    }
+
+    public void setMktResInvInstId(Long mktResInvInstId) {
+        this.mktResInvInstId = mktResInvInstId;
+    }
 
     public String getInvoiceCode() {
         return invoiceCode;
