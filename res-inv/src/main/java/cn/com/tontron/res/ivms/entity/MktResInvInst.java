@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by yangyang on 2018/1/29.
  */
-@Table(name = "ivms_inst")
+@Table(name = "inv_inst")
 @Entity
 public class MktResInvInst {
     @Length(max = 10)
