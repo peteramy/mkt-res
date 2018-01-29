@@ -10,7 +10,7 @@ import java.util.Date;
  */
 @Table(name = "inv_inst")
 @Entity
-public class MktResInvInst {
+public class MktResInvInst { // 营销资源发票实例
     @Length(max = 10)
     private String actType; //通用数据操作类型:通用数据操作类型, KIP=保持/ADD=新增 /MOD=修改/DEL=删除
     @Id
