@@ -3,9 +3,7 @@ package cn.com.tontron.res.ims.entity;
 import cn.com.tontron.res.common.base.entity.MktResModel;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by yangyang on 2018/1/29.
@@ -14,6 +12,8 @@ import javax.persistence.Id;
  * 2.对于有序营销资源，对每个实例进行序列化管理。如手机终端等。
  * 3.对于无序营销资源，根据资源规格、批次、仓库等管理要求进行管理， 无需序列化，只需要记录库存，不生成该表记录。如礼品等。
  */
+@Table(name = "ims_inst")
+@Entity
 public class MktResInst extends MktResModel { // 营销资源实例
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
