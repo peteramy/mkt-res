@@ -9,15 +9,15 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>res-pnms</module>
+        <module>res-num</module>
         <module>res-ims</module>
-        <module>res-otms</module>
-        <module>res-umms</module>
+        <module>res-other</module>
+        <module>res-card</module>
         <module>res-ui</module>
-        <module>res-tems</module>
+        <module>res-term</module>
         <module>res-common</module>
         <module>res-auth</module>
-        <module>res-lgms</module>
+        <module>res-logis</module>
         <module>res-inv</module>
     </modules>
 
