@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 描述出入库详细信息
  */
 @Table(name = "inv_evt_detail")
 @Entity

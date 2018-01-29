@@ -8,6 +8,7 @@ import java.util.Date;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 发票作废合并到发票使用记录中，记录每次打印或作废的流水号与票号。 发票打印不触发事件,发票作废需要申请，生成作废事件。
  */
 @Table(name = "inv_use_rec")
 @Entity
