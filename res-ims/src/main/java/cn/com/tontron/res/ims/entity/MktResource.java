@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by yyn on 2018/1/29.
  */
-@Table(name = "mkt_resource")
+@Table(name = "ims_resource")
 @Entity
 public class MktResource extends MktModel { //营销资源
     @Id

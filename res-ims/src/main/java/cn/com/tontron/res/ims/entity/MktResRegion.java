@@ -7,7 +7,7 @@ import javax.persistence.*;
 /**
  * Created by yyn on 2018/1/29.
  */
-@Table(name = "mkt_res_region")
+@Table(name = "ims_region")
 @Entity
 public class MktResRegion extends MktModel{ //营销资源适用地区
     @Id

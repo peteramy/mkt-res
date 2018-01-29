@@ -8,7 +8,7 @@ import javax.persistence.*;
 /**
  * Created by yyn on 2018/1/29.
  */
-@Table(name = "batch_rec")
+@Table(name = "ims_batch_rec")
 @Entity
 public class MktResBatchRec extends MktModel { //营销资源管理批次
     @Id
