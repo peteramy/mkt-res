@@ -4,7 +4,6 @@ import cn.com.tontron.res.common.base.entity.MktModel;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by yyn on 2018/1/29.
