@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
  * Created by yangyang on 2018/1/19.
  */
 @Configuration
-public class IvmsDbRepReg {
+public class InvDbRepReg {
     @Autowired
     private EntityManager entityManager;
 }

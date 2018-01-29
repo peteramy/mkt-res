@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @MsProvider(ms = ResMs.ims, type = MsProvider.Type.Share)
 @Component
-public class ResIvmsShareProvider {
+public class ResInvShareProvider {
     @Autowired
     private MsCallService msCallService;
 
