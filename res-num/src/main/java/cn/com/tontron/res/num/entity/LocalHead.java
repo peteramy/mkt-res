@@ -8,6 +8,9 @@ import java.util.Date;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 描述号码头信息，包括固话号码头、移动号码头等信息。
+ 特殊号头 SPECIAL_HEAD 也合到一起，用号头类型区别。
+ 描述特殊号头信息，如 400、800、11808、17909 号头的配置的信息，用 于计费通话类型的判断。
  */
 @Table(name = "num_local_head")
 @Entity
