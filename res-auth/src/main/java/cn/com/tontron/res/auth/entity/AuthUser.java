@@ -5,9 +5,9 @@ import cn.com.tontron.res.common.base.entity.AutoModel;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Table(name = "sys_user")
+@Table(name = "auth_user")
 @Entity
-public class AuthSysUser extends AutoModel {
+public class AuthUser extends AutoModel {
     private String password;
     private String username;
 

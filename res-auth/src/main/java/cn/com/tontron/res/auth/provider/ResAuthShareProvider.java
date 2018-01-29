@@ -1,7 +1,7 @@
 package cn.com.tontron.res.auth.provider;
 
-import cn.com.tontron.res.auth.entity.AuthSysUser;
-import cn.com.tontron.res.auth.service.AuthSysUserService;
+import cn.com.tontron.res.auth.entity.AuthUser;
+import cn.com.tontron.res.auth.service.AuthUserService;
 import cn.com.tontron.res.common.base.entity.ResMs;
 import cn.com.tontron.res.common.message.req.MsReqReceiveMsg;
 import cn.com.tontron.res.common.message.rsp.MsRspSendMsg;
@@ -18,14 +18,35 @@ import org.springframework.stereotype.Component;
 @Component
 public class ResAuthShareProvider {
     @Autowired
-    private AuthSysUserService userService;
+    private AuthUserService userService;
     @Autowired
     private MsCallService msCallService;
 
     @MsApi(apiCode = "99999900100001")
     public MsRspSendMsg findUserByName(MsReqReceiveMsg reqMsg) {
         String username = reqMsg.getSvcCont().getRequestObject().get("username").asText();
-        AuthSysUser user = userService.findByName(username);
+        AuthUser user = userService.findByName(username);
+        return msCallService.rspAssemble(user, reqMsg);
+    }
+
+    @MsApi(apiCode = "99999900100002")
+    public MsRspSendMsg findUserPage(MsReqReceiveMsg reqMsg) {
+        String username = reqMsg.getSvcCont().getRequestObject().get("username").asText();
+        AuthUser user = userService.findByName(username);
+        return msCallService.rspAssemble(user, reqMsg);
+    }
+
+    @MsApi(apiCode = "99999900100003")
+    public MsRspSendMsg saveUser(MsReqReceiveMsg reqMsg) {
+        String username = reqMsg.getSvcCont().getRequestObject().get("username").asText();
+        AuthUser user = userService.findByName(username);
+        return msCallService.rspAssemble(user, reqMsg);
+    }
+
+    @MsApi(apiCode = "99999900100004")
+    public MsRspSendMsg deleteUser(MsReqReceiveMsg reqMsg) {
+        String username = reqMsg.getSvcCont().getRequestObject().get("username").asText();
+        AuthUser user = userService.findByName(username);
         return msCallService.rspAssemble(user, reqMsg);
     }
 }

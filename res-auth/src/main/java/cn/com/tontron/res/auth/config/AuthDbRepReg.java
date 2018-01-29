@@ -1,6 +1,6 @@
 package cn.com.tontron.res.auth.config;
 
-import cn.com.tontron.res.auth.entity.AuthSysUser;
+import cn.com.tontron.res.auth.entity.*;
 import cn.com.tontron.res.common.base.jpa.JpaRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +16,28 @@ public class AuthDbRepReg {
     @Autowired
     private EntityManager entityManager;
 
-    @Bean(name = "sysUserRepo")
-    public JpaRepositoryImpl sysUserRepo() {
-        return new JpaRepositoryImpl(AuthSysUser.class, entityManager);
+    @Bean(name = "authResRepo")
+    public JpaRepositoryImpl authResRepo() {
+        return new JpaRepositoryImpl(AuthRes.class, entityManager);
+    }
+
+    @Bean(name = "authRoleRepo")
+    public JpaRepositoryImpl authRoleRepo() {
+        return new JpaRepositoryImpl(AuthRole.class, entityManager);
+    }
+
+    @Bean(name = "authRoleResRepo")
+    public JpaRepositoryImpl authRoleResRepo() {
+        return new JpaRepositoryImpl(AuthRoleRes.class, entityManager);
+    }
+
+    @Bean(name = "authUserRepo")
+    public JpaRepositoryImpl authUserRepo() {
+        return new JpaRepositoryImpl(AuthUser.class, entityManager);
+    }
+
+    @Bean(name = "authUserRoleRepo")
+    public JpaRepositoryImpl authUserRoleRepo() {
+        return new JpaRepositoryImpl(AuthUserRole.class, entityManager);
     }
 }
