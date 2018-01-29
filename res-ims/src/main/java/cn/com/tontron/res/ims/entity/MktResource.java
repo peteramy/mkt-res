@@ -1,4 +1,4 @@
-package cn.com.tontron.res.auth.entity;
+package cn.com.tontron.res.ims.entity;
 
 import cn.com.tontron.res.common.base.entity.MktModel;
 import org.hibernate.validator.constraints.Length;
@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by yyn on 2018/1/29.
  */
-@Table(name = "mkt_resource")
+@Table(name = "ims_resource")
 @Entity
 public class MktResource extends MktModel { //营销资源
     @Id

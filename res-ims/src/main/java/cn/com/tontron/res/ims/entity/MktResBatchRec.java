@@ -1,4 +1,4 @@
-package cn.com.tontron.res.auth.entity;
+package cn.com.tontron.res.ims.entity;
 
 import cn.com.tontron.res.common.base.entity.MktModel;
 import org.hibernate.validator.constraints.Length;
@@ -8,7 +8,7 @@ import javax.persistence.*;
 /**
  * Created by yyn on 2018/1/29.
  */
-@Table(name = "batch_rec")
+@Table(name = "ims_batch_rec")
 @Entity
 public class MktResBatchRec extends MktModel { //营销资源管理批次
     @Id
