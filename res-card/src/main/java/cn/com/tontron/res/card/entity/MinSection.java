@@ -23,7 +23,7 @@ public class MinSection extends MktModel{ //MIN段
     @Length(max = 30)
     private String endMin; //终止值:记录终止值。
     private Date effDate; //生效时间:生效时间
-     private Date expDate; //失效时间:失效时间
+    private Date expDate; //失效时间:失效时间
 
     public Long getMinInfoId() {
         return minInfoId;
