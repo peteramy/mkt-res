@@ -1,26 +1,17 @@
 package cn.com.tontron.res.ivms.entity;
 
+import cn.com.tontron.res.common.base.entity.MktResModel;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by yangyang on 2018/1/29.
  */
 @Table(name = "inv_inst")
 @Entity
-public class MktResInvInst { // 营销资源发票实例
-    @Length(max = 10)
-    private String actType; //通用数据操作类型:通用数据操作类型, KIP=保持/ADD=新增 /MOD=修改/DEL=删除
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long mktResInvInstId; // 营销资源发票 实例标识：营销资源实例的标 识，主键
-    @Length(max = 250)
-    private String mktResInstNbr; // 营销资源实例 编码：记录营销资源实例编 码。
-    private Long mktResBatchId; // 资源管理批次 标识：来源于物资管理系统时产生的数据
-    private Long mktResId; // 营销资源标识：营销资源标识
-    private Long mktResStoreId; // 营销资源仓库 标识：营销资源仓库标识
+public class MktResInvInst extends MktResModel { // 营销资源发票实例
     @Length(max = 20)
     private String invoiceCode; // 发票代码：记录营销资源实例的 发票代码，计费建议。
     private Long invStaNum; // 起始票号：记录一本非专票的发 票实例的最初的票 号。
@@ -36,64 +27,7 @@ public class MktResInvInst { // 营销资源发票实例
     private Long platId; // 平台标识:记录来源平台标识，如 MSS 或集团终端系统
     private Long lanId; // 本地网标识:记录本地网标识。
     private Long regionId; // 区域标识:记录区域标识。指向公共管理区域标识
-    @Length(max = 2000)
-    private String remark; // 备注
-    private Date statusDate; // 状态时间:记录状态变更的时间。
-    @Length(max = 10)
-    private String statusCd; // 状态:记录发票实例状态。 LOVB=RES-C-0027
-    private Long createStaff; // 创建人:记录首次创建的员工标识。
-    private Date createDate; // 创建时间:记录首次创建的时 间。
-    private Long updateStaff; // 修改人:记录每次修改的员工标识。
-    private Date updateDate; // 修改时间:记录每次修改的时 间。
     private Long partnerId; // 合作伙伴标识：资源供应商 ID
-
-    public String getActType() {
-        return actType;
-    }
-
-    public void setActType(String actType) {
-        this.actType = actType;
-    }
-
-    public Long getMktResInvInstId() {
-        return mktResInvInstId;
-    }
-
-    public void setMktResInvInstId(Long mktResInvInstId) {
-        this.mktResInvInstId = mktResInvInstId;
-    }
-
-    public String getMktResInstNbr() {
-        return mktResInstNbr;
-    }
-
-    public void setMktResInstNbr(String mktResInstNbr) {
-        this.mktResInstNbr = mktResInstNbr;
-    }
-
-    public Long getMktResBatchId() {
-        return mktResBatchId;
-    }
-
-    public void setMktResBatchId(Long mktResBatchId) {
-        this.mktResBatchId = mktResBatchId;
-    }
-
-    public Long getMktResId() {
-        return mktResId;
-    }
-
-    public void setMktResId(Long mktResId) {
-        this.mktResId = mktResId;
-    }
-
-    public Long getMktResStoreId() {
-        return mktResStoreId;
-    }
-
-    public void setMktResStoreId(Long mktResStoreId) {
-        this.mktResStoreId = mktResStoreId;
-    }
 
     public String getInvoiceCode() {
         return invoiceCode;
@@ -197,62 +131,6 @@ public class MktResInvInst { // 营销资源发票实例
 
     public void setRegionId(Long regionId) {
         this.regionId = regionId;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public Date getStatusDate() {
-        return statusDate;
-    }
-
-    public void setStatusDate(Date statusDate) {
-        this.statusDate = statusDate;
-    }
-
-    public String getStatusCd() {
-        return statusCd;
-    }
-
-    public void setStatusCd(String statusCd) {
-        this.statusCd = statusCd;
-    }
-
-    public Long getCreateStaff() {
-        return createStaff;
-    }
-
-    public void setCreateStaff(Long createStaff) {
-        this.createStaff = createStaff;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Long getUpdateStaff() {
-        return updateStaff;
-    }
-
-    public void setUpdateStaff(Long updateStaff) {
-        this.updateStaff = updateStaff;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
     }
 
     public Long getPartnerId() {
