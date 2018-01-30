@@ -3,6 +3,7 @@ package cn.com.tontron.res.auth.config;
 import cn.com.tontron.res.auth.entity.*;
 import cn.com.tontron.res.common.base.jpa.JpaRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,6 +13,7 @@ import javax.persistence.EntityManager;
  * Created by yangyang on 2018/1/19.
  */
 @Configuration
+@EntityScan({"cn.com.tontron.res.auth.entity"})
 public class AuthDbRepReg {
     @Autowired
     private EntityManager entityManager;

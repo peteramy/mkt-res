@@ -3,12 +3,14 @@ package cn.com.tontron.res.num.config;
 import cn.com.tontron.res.common.base.jpa.JpaRepositoryImpl;
 import cn.com.tontron.res.num.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;
 
 @Configuration
+@EntityScan({"cn.com.tontron.res.num.entity"})
 public class NumDbRepReg {
     @Autowired
     private EntityManager entityManager;
