@@ -10,11 +10,11 @@ import java.util.List;
  * 营销资源详细信息，包含营销资源仓库主表对象、营销资源仓库属性表对象、营 销资源仓库关系表对象、仓库使用对象表对象、营销资源库存表对象、营销资源 库存变动事件表对象
  */
 public class MktResStoreDetail extends MktResStore {
-    List<MktResStoreAttr> mktResStoreAttrs; // 营销资源属性
-    List<MktResStoreRel> mktResStoreRels; // 营销资源仓库 关系
-    List<MktResStoreObjRel> mktResStoreObjRels; // 仓库使用对象
-    List<MktResInstStore> mktResInstStore;// 营销资源库存
-    List<MktResEvent> mktResEvents; // 营销资源库存 变动事件
+    private List<MktResStoreAttr> mktResStoreAttrs; // 营销资源属性
+    private List<MktResStoreRel> mktResStoreRels; // 营销资源仓库 关系
+    private List<MktResStoreObjRel> mktResStoreObjRels; // 仓库使用对象
+    private List<MktResInstStore> mktResInstStore;// 营销资源库存
+    private List<MktResEvent> mktResEvents; // 营销资源库存 变动事件
 
     public List<MktResStoreAttr> getMktResStoreAttrs() {
         return mktResStoreAttrs;
