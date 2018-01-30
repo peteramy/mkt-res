@@ -2,8 +2,7 @@ package cn.com.tontron.res.ims.entity;
 
 import cn.com.tontron.res.common.base.entity.MktModel;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by yangyang on 2018/1/29.
@@ -11,6 +10,8 @@ import javax.persistence.Table;
 @Table(name = "ims_attr")
 @Entity
 public class MktResAttr extends MktModel {// 3.1.8. 营销资源属性
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResAttrId; // 营销资源属性 标识:记录营销资源属性标识。
     private Long mktResId; // 营销资源标识: 记录营销资源标识
     private Long attrId; // 属性标识: 记录属性标识
