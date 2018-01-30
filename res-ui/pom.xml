@@ -48,27 +48,32 @@
         </dependency>
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-otms</artifactId>
+            <artifactId>res-other</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-pnms</artifactId>
+            <artifactId>res-num</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-tems</artifactId>
+            <artifactId>res-term</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-umms</artifactId>
+            <artifactId>res-card</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-lgms</artifactId>
+            <artifactId>res-inv</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.com.tontron.res</groupId>
+            <artifactId>res-logis</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
