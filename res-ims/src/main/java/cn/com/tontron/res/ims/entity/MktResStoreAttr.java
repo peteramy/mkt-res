@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @Table(name = "ims_store_atte")
 @Entity
-public class MktResStoreAttr extends MktModel { //营销资源仓库属性
+public class MktResStoreAttr extends MktModel { //3.1.13. 营销资源仓库属性
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long storeAttrId; //营销资源仓库属性标识:记录营销资源仓库属性标识

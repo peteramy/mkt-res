@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Table(name = "num_local_head")
 @Entity
-public class LocalHead extends MktModel{ //号码头
+public class LocalHead extends MktModel { //3.1.14. 号码头
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long headId; //号头标识:号头标识

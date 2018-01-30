@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Table(name = "card_min_section")
 @Entity
-public class MinSection extends MktModel{ //MIN段
+public class MinSection extends MktModel { //3.1.20. MIN段
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long minInfoId; //MIN 段标识:记录 MIN 段标识。

@@ -14,7 +14,7 @@ import javax.persistence.*;
  */
 @Table(name = "card_inst")
 @Entity
-public class MktResCardInst extends MktResModel { //营销资源卡信息实例
+public class MktResCardInst extends MktResModel { //3.1.18. 营销资源卡信息实例
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResInstId; //营销资源实例标识:营销资源实例的标识，主键

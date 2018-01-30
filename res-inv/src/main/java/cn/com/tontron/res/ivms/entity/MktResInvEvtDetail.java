@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @Table(name = "inv_evt_detail")
 @Entity
-public class MktResInvEvtDetail extends MktModel{ //营销资源库存发票变动事件明细
+public class MktResInvEvtDetail extends MktModel { //3.1.3. 营销资源库存发票变动事件明细
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResChngEvtDetailId; //营销资源库存变动事件明细标识：营销资源库存变动事件明细ID

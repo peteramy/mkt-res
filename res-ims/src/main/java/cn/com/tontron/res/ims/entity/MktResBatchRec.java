@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Table(name = "ims_batch_rec")
 @Entity
-public class MktResBatchRec extends MktModel { //营销资源管理批次
+public class MktResBatchRec extends MktModel { // 3.1.6. 营销资源管理批次
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResBatchId; //资源管理批次标识:来源于物资管理系统时产生的数据

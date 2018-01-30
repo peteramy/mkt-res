@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Table(name = "card_min_num_rel")
 @Entity
-public class MinNumRel extends MktModel { // MIN 段与号头关系
+public class MinNumRel extends MktModel { // 3.1.26. MIN段与号头关系
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long minNumRel; // MIN 段与号头 关联标识

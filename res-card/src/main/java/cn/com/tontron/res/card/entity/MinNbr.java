@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Table(name = "card_min_nbr")
 @Entity
-public class MinNbr extends MktModel{ //MIN码
+public class MinNbr extends MktModel { //3.1.19. MIN码
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long min; //MIN 码:MIN 码

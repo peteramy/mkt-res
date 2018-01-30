@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Table(name = "ims_resource")
 @Entity
-public class MktResource extends MktModel { //营销资源
+public class MktResource extends MktModel { // 3.1.7. 营销资源
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResId; //营销资源标识:营销资源标识

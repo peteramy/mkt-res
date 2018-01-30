@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Table(name = "num_exch_num_rel")
 @Entity
-public class ExchNumRel extends MktModel { //记录局向与号头关系。
+public class ExchNumRel extends MktModel { //3.1.27. 局向与号头关系
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long exchNumRelId; //局向与号头关系标识:记录局向与号头关系标识。

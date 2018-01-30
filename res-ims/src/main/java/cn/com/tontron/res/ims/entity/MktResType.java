@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Table(name = "ims_type")
 @Entity
-public class MktResType extends MktModel { // 营销资源类别: 记录了营销资源的类别。MKT_RESOURCE_TYPE--》MKT_RES_TYPE
+public class MktResType extends MktModel { // 3.1.11. 营销资源类别: 记录了营销资源的类别。MKT_RESOURCE_TYPE--》MKT_RES_TYPE
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResTypeId; // 营销资源类别 标识:营销资源 CD 的标识，主 键

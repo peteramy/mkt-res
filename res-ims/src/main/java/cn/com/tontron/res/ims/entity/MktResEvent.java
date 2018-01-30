@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Table(name = "ims_event")
 @Entity
-public class MktResEvent extends MktModel { // 营销资源库存变动事件
+public class MktResEvent extends MktModel { // 3.1.23. 营销资源库存变动事件
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResEventId;// 营销资源库 存变动事件 标识:营销资源库存变动事件标识

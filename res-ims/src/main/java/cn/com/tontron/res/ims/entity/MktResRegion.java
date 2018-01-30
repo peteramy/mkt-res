@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Table(name = "ims_region")
 @Entity
-public class MktResRegion extends MktModel{ //营销资源适用地区
+public class MktResRegion extends MktModel { //3.1.10. 营销资源适用地区
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResRegionId; //营销资源适用地区标识:记录营销资源适用地区标识。

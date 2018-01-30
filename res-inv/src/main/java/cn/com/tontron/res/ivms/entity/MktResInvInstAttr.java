@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Table(name = "inv_ins_attr")
 @Entity
-public class MktResInvInstAttr extends MktModel { // 营销资源发票实例属性
+public class MktResInvInstAttr extends MktModel { // 3.1.4. 营销资源发票实例属性
     private Long mktResInstAttrId;//营销资源实例 属性标识:记录营销资源实例属 性 ID。
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

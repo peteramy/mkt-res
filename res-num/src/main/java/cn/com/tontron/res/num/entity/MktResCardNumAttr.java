@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @Table(name = "ims_num_attr")
 @Entity
-public class MktResCardNumAttr extends MktModel{ //营销资源号码实例属性
+public class MktResCardNumAttr extends MktModel { //3.1.22. 营销资源号码实例属性
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResInstAttrId; //营销资源实例属性标识:记录营销资源实例属性ID

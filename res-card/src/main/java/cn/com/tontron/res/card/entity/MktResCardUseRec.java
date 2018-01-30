@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Table(name = "card_use_rec")
 @Entity
-public class MktResCardUseRec extends MktModel{
+public class MktResCardUseRec extends MktModel { // 3.1.28. 营销资源卡使用记录
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResCardUseRecId; //卡使用记录标识:营销资源使用记录ID的标识，主键

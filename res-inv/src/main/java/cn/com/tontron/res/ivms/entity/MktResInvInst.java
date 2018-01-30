@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Table(name = "inv_inst")
 @Entity
-public class MktResInvInst extends MktResModel { // 营销资源发票实例
+public class MktResInvInst extends MktResModel { // 3.1.1. 营销资源发票实例
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResInvInstId; // 营销资源发票 实例标识：营销资源实例的标 识，主键

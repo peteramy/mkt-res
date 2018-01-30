@@ -10,7 +10,7 @@ import javax.persistence.Table;
  */
 @Table(name = "ims_attr")
 @Entity
-public class MktResAttr extends MktModel {// 营销资源属性
+public class MktResAttr extends MktModel {// 3.1.8. 营销资源属性
     private Long mktResAttrId; // 营销资源属性 标识:记录营销资源属性标识。
     private Long mktResId; // 营销资源标识: 记录营销资源标识
     private Long attrId; // 属性标识: 记录属性标识
