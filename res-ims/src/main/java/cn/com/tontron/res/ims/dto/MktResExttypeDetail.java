@@ -11,7 +11,7 @@ import java.util.List;
  * 营销资源型号详细信息，包含营销资源型号主表对象、营销资源型号属性表对 象
  */
 public class MktResExttypeDetail extends MktResExttype {
-    private List<MktResExttypeAttr> mktResExttypeAttrs; // 营销资源型号 属性: 营销资源型号属 性
+    List<MktResExttypeAttr> mktResExttypeAttrs; // 营销资源型号属性: 营销资源型号属性
 
     public List<MktResExttypeAttr> getMktResExttypeAttrs() {
         return mktResExttypeAttrs;
