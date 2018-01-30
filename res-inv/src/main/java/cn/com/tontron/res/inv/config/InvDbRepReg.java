@@ -1,7 +1,7 @@
-package cn.com.tontron.res.ivms.config;
+package cn.com.tontron.res.inv.config;
 
 import cn.com.tontron.res.common.base.jpa.JpaRepositoryImpl;
-import cn.com.tontron.res.ivms.entity.*;
+import cn.com.tontron.res.inv.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

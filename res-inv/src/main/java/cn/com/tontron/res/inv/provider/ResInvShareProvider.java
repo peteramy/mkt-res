@@ -1,4 +1,4 @@
-package cn.com.tontron.res.ivms.provider;
+package cn.com.tontron.res.inv.provider;
 
 import cn.com.tontron.res.common.base.entity.ResMs;
 import cn.com.tontron.res.common.message.req.MsReqReceiveMsg;
