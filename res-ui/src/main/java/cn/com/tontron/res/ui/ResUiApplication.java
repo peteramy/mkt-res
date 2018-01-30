@@ -10,11 +10,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @ComponentScan({"cn.com.tontron.res.ui",
         "cn.com.tontron.res.common",
         "cn.com.tontron.res.auth",
+        "cn.com.tontron.res.card",
         "cn.com.tontron.res.ims",
-        "cn.com.tontron.res.otms",
-        "cn.com.tontron.res.pnms",
-        "cn.com.tontron.res.tems",
-        "cn.com.tontron.res.umms"
+        "cn.com.tontron.res.inv",
+        "cn.com.tontron.res.logis",
+        "cn.com.tontron.res.num",
+        "cn.com.tontron.res.other",
+        "cn.com.tontron.res.term"
 })
 public class ResUiApplication {
     public static void main(String[] args) {
