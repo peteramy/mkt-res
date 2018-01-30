@@ -2,6 +2,7 @@ package cn.com.tontron.res.common.base.entity;
 
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
@@ -11,11 +12,14 @@ import java.util.Date;
 @MappedSuperclass
 public class MktModel {
     @Length(max = 10)
+    @Column(length = 10)
     private String actType; //通用数据操作类型:通用数据操作类型, KIP=保持/ADD=新增 /MOD=修改/DEL=删除
     @Length(max = 2000)
+    @Column(length = 2000, columnDefinition = "text")
     private String remark; // 备注
     private Date statusDate; // 状态时间:记录状态变更的时间。
     @Length(max = 10)
+    @Column(length = 10)
     private String statusCd; // 状态:记录发票实例状态。 LOVB=RES-C-0027
     private Long createStaff; // 创建人:记录首次创建的员工标识。
     private Date createDate; // 创建时间:记录首次创建的时 间。
