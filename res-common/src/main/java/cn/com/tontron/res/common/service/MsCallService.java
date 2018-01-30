@@ -22,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -166,11 +165,11 @@ public class MsCallService {
                 for (Method method : methods) {
                     MsApi msApi = method.getAnnotation(MsApi.class);
                     if (msApi != null && msApi.apiCode().equals(msg.getTcpCont().getApiCode())) {
-                        MsRspSendMsg rspMsg = null;
+                        MsRspSendMsg rspMsg;
                         try {
                             rspMsg = (MsRspSendMsg) method.invoke(provider, msg);
-                        } catch (IllegalAccessException | InvocationTargetException e) {
-                            e.printStackTrace();
+                        } catch (Exception e) {
+                            rspMsg = MsRspSendMsg.ProcessError(msg, e.getMessage());
                         }
                         return rspMsg;
                     }
