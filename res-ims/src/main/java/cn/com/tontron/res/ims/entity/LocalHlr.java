@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/30.
+ * 3.1.36. 归属 HLR
  * 记录归属 HLR 网元信息。
  */
 @Table(name = "ims_local_hlr")

@@ -6,10 +6,12 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 3.1.27. 局向与号头关系
+ * 记录局向与号头关系。
  */
 @Table(name = "num_exch_num_rel")
 @Entity
-public class ExchNumRel extends MktModel { //3.1.27. 局向与号头关系
+public class ExchNumRel extends MktModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long exchNumRelId; //局向与号头关系标识:记录局向与号头关系标识。

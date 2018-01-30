@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 3.1.13. 营销资源仓库属性
  * 记录营销资源仓库属性。
  */
 @Table(name = "ims_store_atte")

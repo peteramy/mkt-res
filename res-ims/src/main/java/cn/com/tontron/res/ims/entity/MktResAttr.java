@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 /**
  * Created by yangyang on 2018/1/29.
+ * 3.1.8. 营销资源属性
+ * 营销资源属性.
  */
 @Table(name = "ims_attr")
 @Entity

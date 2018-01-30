@@ -7,11 +7,12 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/30.
+ * 3.1.30. 营销资源库存号码变动事件明细
  * 描述号码出入库详细信息，数据量太多，独立分表。按照号码、卡分别建一 套表。
  */
 @Table(name = "num_evt_detail")
 @Entity
-public class MktResNumEvtDetail extends MktModel{ //3.1.30. 营销资源库存号码变动事件明细
+public class MktResNumEvtDetail extends MktModel{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResChngEvtDetailId; //营销资源库存变动事件明细标识:营销资源库存变动事件明细ID

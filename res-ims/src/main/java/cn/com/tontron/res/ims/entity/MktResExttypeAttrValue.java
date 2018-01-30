@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/30.
+ * 3.1.49. 营销资源型号属性选用值
  * 记录营销资源型号属性选用值。
  */
 @Table(name = "ims_exttype_attr_value")

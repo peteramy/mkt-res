@@ -8,6 +8,7 @@ import java.util.Date;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 3.1.7. 营销资源
  * 记录电信涉及的各类营销资源规格定义信息，可以按类别、品牌、型号、 颜色等维度根据业务需要组合定义。
  */
 @Table(name = "ims_resource")

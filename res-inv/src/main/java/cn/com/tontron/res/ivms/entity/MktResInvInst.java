@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 /**
  * Created by yangyang on 2018/1/29.
+ * 3.1.1. 营销资源发票实例
+ * 记录营销资源发票实例。专票的实例数量小，每张都生成一条实例记录; 非专票资源的，按每本生成一条实例记录，同时记录开始和结束票号
  */
 @Table(name = "inv_inst")
 @Entity

@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/30.
+ * 3.1.40. 营销资源组与营销资源关系
  * 描述营销资源组与营销资源之间的关系
  */
 @Table(name = "ims_grp_res_rel")

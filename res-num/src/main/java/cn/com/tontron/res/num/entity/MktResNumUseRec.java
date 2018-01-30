@@ -8,11 +8,12 @@ import java.util.Date;
 
 /**
  * Created by yangyang on 2018/1/30.
+ * 3.1.29. 营销资源号码使用记录
  * 营销资源号码使用记录。数据量太多，独立分表。按照号码、卡分别建一 套表。
  */
 @Table(name = "num_use_rec")
 @Entity
-public class MktResNumUseRec extends MktModel { // 3.1.29. 营销资源号码使用记录
+public class MktResNumUseRec extends MktModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResNumUseRecId; // 号码使用记录 标识:营销资源使用记录 ID 的标识，主键

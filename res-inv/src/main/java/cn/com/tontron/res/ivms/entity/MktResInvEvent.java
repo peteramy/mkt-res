@@ -8,10 +8,12 @@ import java.util.Date;
 
 /**
  * Created by yangyang on 2018/1/29.
+ * 3.1.5. 营销资源库存发票变动事件
+ * 述对发票资源实例的操作事件
  */
 @Table(name = "inv_event")
 @Entity
-public class MktResInvEvent extends MktModel { // 3.1.5. 营销资源库存发票变动事件: 述对发票资源实例的操作事件
+public class MktResInvEvent extends MktModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResEventId; // 营销资源库存 变动事件标识:营销资源库存变动事 件标识,主键

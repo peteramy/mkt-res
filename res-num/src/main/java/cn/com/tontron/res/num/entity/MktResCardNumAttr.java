@@ -7,11 +7,12 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 3.1.22. 营销资源号码实例属性
  * 记录号码实例属性。
  */
 @Table(name = "ims_num_attr")
 @Entity
-public class MktResCardNumAttr extends MktModel { //3.1.22. 营销资源号码实例属性
+public class MktResCardNumAttr extends MktModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResInstAttrId; //营销资源实例属性标识:记录营销资源实例属性ID

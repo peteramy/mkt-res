@@ -8,6 +8,8 @@ import java.util.Date;
 
 /**
  * Created by yangyang on 2018/1/29.
+ * 3.1.23. 营销资源库存变动事件
+ * 描述对营销资源的操作事件
  */
 @Table(name = "ims_event")
 @Entity

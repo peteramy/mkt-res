@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/30.
+ * 3.1.39. 营销资源组
  * 记录营销资源的应用分组，简化配置要求。
  */
 @Table(name = "ims_grp")

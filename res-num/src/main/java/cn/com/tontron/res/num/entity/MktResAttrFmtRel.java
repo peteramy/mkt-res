@@ -6,11 +6,12 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/30.
+ * 3.1.33. 营销资源属性与格式关系
  * 记录号码属性(如号码等级、号码标签)与号码格式的关系信息。这个是规格层面的号码等级范围，在号码实例生成时，号码等级是直接体现在号码实例实体上的;
  */
 @Table(name = "num_attr_fmt_rel")
 @Entity
-public class MktResAttrFmtRel extends MktModel{ //3.1.33. 营销资源属性与格式关系
+public class MktResAttrFmtRel extends MktModel{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResAttrRelId; //营销资源属性与格式关系标识:关系标识

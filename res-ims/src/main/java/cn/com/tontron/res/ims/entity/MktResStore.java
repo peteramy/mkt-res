@@ -8,6 +8,7 @@ import java.util.Date;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 3.1.12. 营销资源仓库
  * 记录了营销资源仓库。
  */
 @Table(name = "ims_store")

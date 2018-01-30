@@ -8,11 +8,12 @@ import java.util.Date;
 
 /**
  * Created by yangyang on 2018/1/29.
+ * 3.1.17. 营销资源号码实例
  * 记录号码类营销资源实例信息。营销资源实例编码，记录号码。 号码实例独立成表原因:数量较多，使用比较频繁，管理方式差异较大。
  */
 @Table(name = "ims_num_inst")
 @Entity
-public class MktResNumInst extends MktResModel { // 3.1.17. 营销资源号码实例
+public class MktResNumInst extends MktResModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResInstId; // 营销资源实例 标识:营销资源实例标识

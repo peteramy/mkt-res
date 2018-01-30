@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 /**
  * Created by yangyang on 2018/1/29.
+ * 3.1.4. 营销资源发票实例属性
+ * 记录营销资源发票实例属性信息。
  */
 @Table(name = "inv_ins_attr")
 @Entity

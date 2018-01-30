@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 3.1.10. 营销资源适用地区
  * 记录营销资源适用地区。
  */
 @Table(name = "ims_region")

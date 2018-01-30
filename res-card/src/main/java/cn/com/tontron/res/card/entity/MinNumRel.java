@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 /**
  * Created by yangyang on 2018/1/29.
+ * 3.1.26. MIN段与号头关系
+ * 记录 MIN 段与号头关系。
  */
 @Table(name = "card_min_num_rel")
 @Entity

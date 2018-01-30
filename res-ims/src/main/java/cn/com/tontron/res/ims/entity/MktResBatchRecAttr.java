@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/30.
+ * 3.1.41. 营销资源管理批次属性
  * 记录营销资源管理批次属性信息。
  */
 @Table(name = "ims_batch_rec_attr")

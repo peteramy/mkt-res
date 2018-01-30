@@ -7,11 +7,12 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/30.
+ * 3.1.32. 号码格式配置
  * 描述号码格式配置。
  */
 @Table(name = "num_fmt_cfg")
 @Entity
-public class MktResNumFmtCfg extends MktModel { //3.1.32. 号码格式配置
+public class MktResNumFmtCfg extends MktModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long formatId; //格式标识:格式标识

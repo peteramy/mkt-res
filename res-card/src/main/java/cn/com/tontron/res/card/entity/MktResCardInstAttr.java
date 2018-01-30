@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 /**
  * Created by yangyang on 2018/1/29.
+ * 3.1.21. 营销资源卡实例属性
+ * 记录卡实例属性。
  */
 @Table(name = "card_inst_attr")
 @Entity

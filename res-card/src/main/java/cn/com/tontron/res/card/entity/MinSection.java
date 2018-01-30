@@ -8,6 +8,7 @@ import java.util.Date;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 3.1.20. MIN段
  * 描述 MIN 段信息，通常对应 MIN 码中的 M0M1M2M3，在 UIM 卡与移动号码 的混配规则中会使用。
  * 表名从 MIN_INFO 改为 MIN_SECTION，从地域挪过 来的
  */

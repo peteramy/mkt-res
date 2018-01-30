@@ -8,6 +8,7 @@ import java.util.Date;
 
 /**
  * Created by yyn on 2018/1/30.
+ * 3.1.38. 预选
  * 一般用于 400、800 等号码，记录预选号码的相关信息;
  * 也支撑普通号码预选，例如网厅、自助终端预约选号。
  * 所有的号码预选都存放在该实体中，包括 BSS 中订单、购物车的预选。
@@ -16,7 +17,7 @@ import java.util.Date;
  */
 @Table(name = "num_pre_use")
 @Entity
-public class MktResNumPreUse extends MktModel { //3.1.38. 预选
+public class MktResNumPreUse extends MktModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResNumPreUseId; //营销资源号码预选标识:营销资源使用记录ID的标识，主键

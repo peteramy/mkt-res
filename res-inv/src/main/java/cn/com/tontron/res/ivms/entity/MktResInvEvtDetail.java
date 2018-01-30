@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 3.1.3. 营销资源库存发票变动事件明细
  * 描述出入库详细信息
  */
 @Table(name = "inv_evt_detail")

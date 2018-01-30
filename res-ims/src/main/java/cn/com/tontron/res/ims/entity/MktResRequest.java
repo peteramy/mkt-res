@@ -8,6 +8,7 @@ import java.util.Date;
 
 /**
  * Created by yyn on 2018/1/30.
+ * 3.1.34. 营销资源申请单
  * 记录申请单的经办人信息、时间要求。通过流程审批。
  */
 @Table(name = "ims_request")

@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/30.
+ * 3.1.47. 营销资源附加属性
  * 记录营销资源附加属性。
  */
 @Table(name = "ims_ext_attr")

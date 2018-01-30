@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 3.1.24. 营销资源库存变动事件明细
  * 描述出入库详细信息，对于有序营销资源，记录营销资源实例的数量变化;对于 无序营销资源，记录营销资源数量的变化
  */
 @Table(name = "ims_chng_evt_detail")

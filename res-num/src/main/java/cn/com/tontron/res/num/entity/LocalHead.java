@@ -8,13 +8,14 @@ import java.util.Date;
 
 /**
  * Created by yyn on 2018/1/29.
+ * 3.1.14. 号码头
  * 描述号码头信息，包括固话号码头、移动号码头等信息。
- 特殊号头 SPECIAL_HEAD 也合到一起，用号头类型区别。
- 描述特殊号头信息，如 400、800、11808、17909 号头的配置的信息，用 于计费通话类型的判断。
+ * 特殊号头 SPECIAL_HEAD 也合到一起，用号头类型区别。
+ * 描述特殊号头信息，如 400、800、11808、17909 号头的配置的信息，用 于计费通话类型的判断。
  */
 @Table(name = "num_local_head")
 @Entity
-public class LocalHead extends MktModel { //3.1.14. 号码头
+public class LocalHead extends MktModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long headId; //号头标识:号头标识

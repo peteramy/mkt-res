@@ -6,10 +6,12 @@ import javax.persistence.*;
 
 /**
  * Created by yangyang on 2018/1/29.
+ * 3.1.9. 营销资源属性选用值
+ * 记录营销资源属性选用值。
  */
 @Table(name = "ims_attr_value")
 @Entity
-public class MktResAttrValue extends MktModel {// 3.1.9. 营销资源属性选用值:记录营销资源属性选用值。
+public class MktResAttrValue extends MktModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResAttrValId;//营销资源属 性选用值标 识:记录营销资源属性选用值标识。
