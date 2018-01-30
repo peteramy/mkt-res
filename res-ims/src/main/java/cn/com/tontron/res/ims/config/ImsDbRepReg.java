@@ -157,17 +157,3 @@ public class ImsDbRepReg {
         return new JpaRepositoryImpl(MktResUseRec.class, entityManager);
     }
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
