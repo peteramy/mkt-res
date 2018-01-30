@@ -11,6 +11,22 @@ import java.util.List;
  * 营销资源类别详细信息，包含营销资源类别主表对象、营销资源类别属性表对象 及营销资源类别适用区域表对象。
  */
 public class MktResTypeDetail extends MktResType { //3.2.1. 营销资源类别详细信息
-    private List<MktResTypeAttr> mktResTypeAttrs;
-    private List<MktResTypeRegion>
+    private List<MktResTypeAttr> mktResTypeAttrs; //营销资源类别属性:营销资源类别属性
+    private List<MktResTypeRegion> mktResTypeRegions; //营销资源类别适用区域:营销资源类别适用区域
+
+    public List<MktResTypeAttr> getMktResTypeAttrs() {
+        return mktResTypeAttrs;
+    }
+
+    public void setMktResTypeAttrs(List<MktResTypeAttr> mktResTypeAttrs) {
+        this.mktResTypeAttrs = mktResTypeAttrs;
+    }
+
+    public List<MktResTypeRegion> getMktResTypeRegions() {
+        return mktResTypeRegions;
+    }
+
+    public void setMktResTypeRegions(List<MktResTypeRegion> mktResTypeRegions) {
+        this.mktResTypeRegions = mktResTypeRegions;
+    }
 }
