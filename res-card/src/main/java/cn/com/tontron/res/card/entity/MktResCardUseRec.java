@@ -19,6 +19,7 @@ public class MktResCardUseRec extends MktModel { // 3.1.28. 营销资源卡使�
     private Long mktResCardUseRecId; //卡使用记录标识:营销资源使用记录ID的标识，主键
     private Long mktResInstId; //营销资源实例标识:记录营销资源卡实例ID。
     @Length(max = 3)
+    @Column(length = 3)
     private String objType; //营销资源使用对象类型,记录营销资源使用对象类型:产品实例，订单项等。LOVB=RES-C-0004
     private Long objId; //营销资源使用对象标识:记录营销资源使用对象ID标示
     private Date usingTime; //使用时间:记录使用时间。

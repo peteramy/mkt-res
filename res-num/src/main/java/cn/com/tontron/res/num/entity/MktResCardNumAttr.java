@@ -19,6 +19,7 @@ public class MktResCardNumAttr extends MktModel { //3.1.22. 营销资源号码�
     private Long attrId; // 属性标识:记录属性 ID。
     private Long attrValueId; // 属性值标识:属性值标识
     @Length(max = 30)
+    @Column(length = 30)
     private String attrValue; // 属性值:属性值。
 
     public Long getMktResInstAttrId() {

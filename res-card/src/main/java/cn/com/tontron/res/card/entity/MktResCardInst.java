@@ -20,10 +20,13 @@ public class MktResCardInst extends MktResModel { //3.1.18. 营销资源卡信�
     private Long mktResInstId; //营销资源实例标识:营销资源实例的标识，主键
     private Long prodInstId; //产品实例标识:记录占用的产品实例标识。
     @Length(max = 3)
+    @Column(length = 3)
     private String funType; //功能类型:记录UIM卡功能类型。LOVB=RES-C-0030
     @Length(max = 3)
+    @Column(length = 3)
     private String funSubType; //功能小类:记录UIM卡功能小类。LOVB=RES-C-0031
     @Length(max = 3)
+    @Column(length = 3)
     private String cardStatusCd; //制卡状态:记录UIM卡信息制卡的状态，LOVB=RES-C-0032
     private Long platId; //平台标识:记录来源平台标识，如MSS或集团终端系统
     private Long lanId; //本地网标识：本地网标识。

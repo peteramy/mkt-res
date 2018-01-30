@@ -21,8 +21,10 @@ public class MinSection extends MktModel { //3.1.20. MIN段
     private Long partnerId; //运营商标识:运营商的唯一标识。 PARTY_ROLE_ID 修改 为 PARTNER_ID
     private Long applyRegionId; //适用区域标识:记录适用区域标识。
     @Length(max = 30)
+    @Column(length = 30)
     private String valueFrom; //起始值:记录起始值。
     @Length(max = 30)
+    @Column(length = 30)
     private String endMin; //终止值:记录终止值。
     private Date effDate; //生效时间:生效时间
     private Date expDate; //失效时间:失效时间

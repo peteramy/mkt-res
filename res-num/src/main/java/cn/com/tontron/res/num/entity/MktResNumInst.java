@@ -20,22 +20,27 @@ public class MktResNumInst extends MktResModel { // 3.1.17. 营销资源号码�
     private Long depositAmount; // 预存金额:营销资源实例的零售 价格，记录号码要求 的预存费，单位为分
     private Long minConsume; // 号码低消费用:记录号码要求的最低消费金额。
     @Length(max = 30)
+    @Column(length = 30)
     private String numLevel; // 号码等级
     @Length(max = 10)
+    @Column(length = 10)
     private String numActType; // 号码业务类型:记录号码业务类型， 用于区分物理号码、 逻辑号码
     private Long platId; // 平台标识:记录来源平台标识， 如 MSS 或集团终端系 统
     private Long regionId; // 区域标识: 指向公共管理区域标识
     private Long lanId; // 本地网标识: 记录本地网标识
     private Long prodInstId; // 产品实例标识: 记录占用的产品实例标识
     @Length(max = 10)
+    @Column(length = 10)
     private String keepObjType; // 预留对象类型:记录预留对象类型， LOVB=RES-C-0018
     private Long keepObjId; // 预留对象标识:记录预留对象标识
     private Date keepStartDate; //预留起始时间:记录预留起始时间
     private Date keepEndDate; // 预留结束时间: 记录预留结束时间
     private Long hlrId; // 网元标识: 归属 HLR 标识
     @Length(max = 3)
+    @Column(length = 3)
     private String highGradeFlag; // 靓号标志:记录优质号码标志， LOVB=PUB-C-0006
     @Length(max = 6)
+    @Column(length = 6)
     private String signCd; // 签发状态:记录签发状态，签发 功能只针对优质号码 使用，优质签发人、 单位、批准人、说明 放在号码实例属性 中。LOVB=RES-C-0029
 
     public Long getMktResInstId() {

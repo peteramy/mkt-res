@@ -16,8 +16,10 @@ public class MktResNumFmtCfg extends MktModel { //3.1.32. 号码格式配置
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long formatId; //格式标识:格式标识
     @Length(max = 30)
+    @Column(length = 30)
     private String formatNbr; //格式编码:格式编码，例如 AABB/AAA
     @Length(max = 2000)
+    @Column(length = 2000, columnDefinition = "text")
     private String formatDesc; //格式描述:格式描述
 
     public Long getFormatId() {

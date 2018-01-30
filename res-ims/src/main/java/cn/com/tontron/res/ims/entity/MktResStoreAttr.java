@@ -18,6 +18,7 @@ public class MktResStoreAttr extends MktModel { //3.1.13. 营销资源仓库属�
     private Long mktResStoreId; //营销资源仓库标识:营销资源仓库标识
     private Long attrId; //属性标识:记录属性标识。
     @Length(max = 30)
+    @Column(length = 30)
     private String attrValue; //属性值:记录属性值。
 
     public Long getStoreAttrId() {

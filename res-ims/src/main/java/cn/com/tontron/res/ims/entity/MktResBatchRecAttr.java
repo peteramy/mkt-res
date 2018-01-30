@@ -19,6 +19,7 @@ public class MktResBatchRecAttr extends MktModel{ //3.1.41. 营销资源管理�
     private Long attrId; //属性标识:记录属性 ID。
     private Long attrValueId; //属性值标识:属性值标识
     @Length(max = 30)
+    @Column(length = 30)
     private String attrValue; //属性值:属性值
     private Long lanId; // 本地网标识: 记录本地网标识
     private Long regionId; // 区域标识: 指向公共管理区域标识

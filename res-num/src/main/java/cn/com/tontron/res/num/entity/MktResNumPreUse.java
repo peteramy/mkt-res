@@ -22,19 +22,26 @@ public class MktResNumPreUse extends MktModel { //3.1.38. 预选
     private Long mktResNumPreUseId; //营销资源号码预选标识:营销资源使用记录ID的标识，主键
     private Long mktResInstId; //营销资源实例标识:记录营销资源号码实例标识。
     @Length(max = 250)
+    @Column(length = 250)
     private String applicantName; //申请人名称:记录申请人名称。
     @Length(max = 3)
+    @Column(length = 3)
     private String applicantType; //申请人类型:记录申请号码预选的申请人类型。LOVB=RES-C-0033
     private Long applicantId; //申请人标识:记录号码预选的申请人标识，如果是已有客户，记录客户标识;如果是客户经理，记录员工标识。新客户，则为空，根据证件判断。
     @Length(max = 30)
+    @Column(length = 30)
     private String requestNbr; //申请预选流水:记录网厅或其他系统申请预选号码的请求流水号
     @Length(max = 10)
+    @Column(length = 10)
     private String certType; //证件类型:记录申请人证件类型。 LOVB=PTY-0004
     @Length(max = 32)
+    @Column(length = 32)
     private String connectPhone; //联系电话:记录申请人联系电话。
     @Length(max = 30)
+    @Column(length = 30)
     private String certNum; //证件号码:记录申请人证件号码。
     @Length(max = 10)
+    @Column(length = 10)
     private String requestSource; //申请来源:记录申请预选的来源渠道。 LOVB=EVT-C-0001
     private Date effDate; //申请生效时间:记录申请号码预选的生效时间。
     private Date expDate; //失效时间:记录申请号码预选的失效时间。

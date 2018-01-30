@@ -18,10 +18,13 @@ public class MktResInvUseRec extends MktModel { // 3.1.2. 营销资源发票使�
     private Long mktResUseRecId; //发票使用记录标识：营销资源使用记录 ID 的标识，主键
     private Long mktResInvInstId; //营销资源发票实例标识：记录营销资源实例 ID。
     @Length(max = 3)
+    @Column(length = 3)
     private String useSystem; //发票使用系统：记录使用发票的系统 或模块:如计费，自 助终端等。 2015.04.21
     @Length(max = 30)
+    @Column(length = 30)
     private String printNbr; //发票打印流水：记录计费或其他系统打印发票的流水号
     @Length(max = 6)
+    @Column(length = 6)
     private String usedCd; //发票使用状态：记录发票使用的状态:发票打印成功， 未打印发票作废，已 打印普票作废，已打 印增值税专票作废。 LOVB=RES-C-0028
     private Long invStaNum; //起始票号：记录当前打印或作废的起始票号。一般需要记录每一张打印或作废的发票，起始票号和结束票号相同;如果是发票未打印作废，一般都是一本发票过期，需要分别记录开始和结束票号。 20150421
     private Long invEndNum; //结束票号：记录当前打印或作废的结束票号。一般需要记录每一张打印或作废的发票，起始票号和结束票号相同;如果是发票未打印作废，一般都是一本发票过期，需要分别记录开始和结束票号。

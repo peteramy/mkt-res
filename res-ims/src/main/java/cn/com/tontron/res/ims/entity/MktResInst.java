@@ -25,6 +25,7 @@ public class MktResInst extends MktResModel { // 3.1.15. 营销资源实例
     private Long regionId; // 区域标识: 指向公共管理区域标 识
     private Long partnerId; // 合作伙伴标识: 资源供应商 ID
     @Length(max = 10)
+    @Column(length = 10)
     private String recycleType; // 回收类型:记录营销资源实例的 回收类型,LOVB=RES- C-0040
 
     public Long getMktResInstId() {

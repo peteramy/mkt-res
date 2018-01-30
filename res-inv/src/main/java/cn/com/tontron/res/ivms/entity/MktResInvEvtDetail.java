@@ -22,6 +22,7 @@ public class MktResInvEvtDetail extends MktModel { //3.1.3. 营销资源库存�
     private Long invEndNum; //结束票号:记录一本非专票的发票实例的最后一张的票号。
     private Long quantity; //数量：记录出入库操作的数量
     @Length(max = 10)
+    @Column(length = 10)
     private String chngType; //出入库类型：记录出入库类型，LOVB=RES-0006
     private Long lanId; //本地网标识：本地网标识。
     private Long regionId; //区域标识：指向公共管理区域标识

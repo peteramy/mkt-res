@@ -16,12 +16,16 @@ public class MktResType extends MktModel { // 3.1.11. 营销资源类别: 记录
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResTypeId; // 营销资源类别 标识:营销资源 CD 的标识，主 键
     @Length(max = 10)
+    @Column(length = 10)
     private String mktResTypeNbr; // 营销资源类别 编码: 记录营销资源类别编 码，LOVB=RES-0003
     @Length(max = 32)
+    @Column(length = 32)
     private String mktResTypeName; // 营销资源类别 名称:营销资源类别名称
     @Length(max = 2000)
+    @Column(length = 2000, columnDefinition = "text")
     private String mktResTypeDesc; // 营销资源类别  述:记录营销资源类别  述
     @Length(max = 10)
+    @Column(length = 10)
     private String orderedFlag; // 序列化标识:记录序列化标识，以区 分有序资源和无序资 源。LOVB=RES-C-0034
     private Long parTypeId; // 上级类别标识:记录营销资源上级类别 CD
     private Long manageRegionId; // 管理区域标识:记录管理区域标识。

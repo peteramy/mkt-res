@@ -20,8 +20,10 @@ public class LocalHead extends MktModel { //3.1.14. 号码头
     private Long headId; //号头标识:号头标识
     private Long hlrId; //网元标识:HLR标识
     @Length(max = 30)
+    @Column(length = 30)
     private String head; //号头:号头
     @Length(max = 10)
+    @Column(length = 10)
     private String headType; //号头类型:表达不同的号头类型，LOVB=RES-C-0021
     private Long partnerId; //运营商标识:运营商的唯一标识。从EMULATORY_PARTNER_ ID修改为PARTY_ROLE_ID，与 MIN段实体中的运营商标识一致
     private Date effDate; //生效时间:生效时间
@@ -29,6 +31,7 @@ public class LocalHead extends MktModel { //3.1.14. 号码头
     private Long applyRegionId; //适用区域标识:记录适用区域标识。
     private Long headLen; //号码位长:记录生成号码的长度
     @Length(max = 4000)
+    @Column(length = 4000, columnDefinition = "text")
     private String createOrderNum; //创建工单号:记录号码字头创建的依据
 
     public Long getHeadId() {

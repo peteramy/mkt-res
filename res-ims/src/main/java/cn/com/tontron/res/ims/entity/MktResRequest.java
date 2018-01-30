@@ -12,17 +12,21 @@ import java.util.Date;
  */
 @Table(name = "ims_request")
 @Entity
-public class MktResRequest extends MktModel{ //3.1.34. 营销资源申请单
+public class MktResRequest extends MktModel { //3.1.34. 营销资源申请单
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResReqId; //营销资源申请单标识:记录营销资源申请单标识
     @Length(max = 30)
+    @Column(length = 30)
     private String reqCode; //申请单编码
     @Length(max = 250)
+    @Column(length = 250)
     private String reqName; //申请单名称
     @Length(max = 10)
+    @Column(length = 10)
     private String reqType; //申请单类型
     @Length(max = 10)
+    @Column(length = 10)
     private String content; //申请单内容描述
     private Long mktResStoreId; //营销资源仓库标识:目标营销资源仓库标识
     private Long destStoreId; //目标营销资源仓库:目标营销资源仓库

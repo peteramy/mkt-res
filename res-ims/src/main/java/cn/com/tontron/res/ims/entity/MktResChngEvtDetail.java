@@ -19,6 +19,7 @@ public class MktResChngEvtDetail extends MktModel { //3.1.24. 营销资源库存
     private Long mktResStoreId; //营销资源仓库标识:营销资源仓库标识，记录事件影响的仓库
     private Long mktResInstId; //营销资源实例标识:营销资源实例标识
     @Length(max = 10)
+    @Column(length = 10)
     private String chngType; //出入库类型:记录出入库类型，LOVB=RES-0006
     private Long quantity; //数量:记录出入库操作的数量
     private Long regionId; // 区域标识: 指向公共管理区域标识

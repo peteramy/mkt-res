@@ -18,9 +18,11 @@ public class MktResUseRec extends MktModel { //3.1.16. 营销资源使用记录
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResUseRecId; //营销资源使用记录标识:营销资源使用记录ID的标识，主键
     @Length(max = 3)
+    @Column(length = 3)
     private String objType; //营销资源使用对象类型:记录营销资源使用对象类型，LOVB=RES-C-0004
     private Long objId; //营销资源使用对象标识:记录营销资源使用对象标识 ,MKT_RES_OBJECT_ID-->OBJ_ID
     @Length(max = 10)
+    @Column(length = 10)
     private String orderedFlag; //序列化标识:记录序列化标识:是，否;LOVB=RES-C-0034
     private Long applyObjId; //应用处理对象标识:营销资源标识，对于有序资源，记录营销资源实例标识，对于无序资源，记录营销资源库存标识。
     private Date usingTime; //使用时间:记录使用时间。

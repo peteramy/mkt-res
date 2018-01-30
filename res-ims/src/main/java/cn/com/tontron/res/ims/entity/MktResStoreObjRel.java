@@ -20,11 +20,13 @@ public class MktResStoreObjRel { //3.1.35. 仓库使用对象
     private Long mktResStoreObjRelId; //仓库与组织关系标识:记录仓库与组织关系标识。
     private Long mktResStoreId; //营销资源仓库标识:营销资源仓库标识
     @Length(max = 10)
+    @Column(length = 10)
     private String objType; //使用对象类型:记录仓库的使用对象类型，LOVB=RES-C-0025
     private Long objId; //记录使用对象标识，组织标识，销售品标识，员工标识，系统标识等等。 20150421。
     private Long regionId; // 区域标识: 指向公共管理区域标识
     private Long isDefault; //是否默认:是否默认使用对象，区分一个仓库可以关联多个使用对象，但是要区分是否默认的
     @Length(max = 10)
+    @Column(length = 10)
     private String useMktType; //使用资源范围:限制能够使用的营销资源类别、营销资源，或者所有，LOVB=RES-C-0038
     private Long useMktId; //使用资源标识:限制使用的具体的营销资源类别标识或者营销资源标识
     @Length(max = 10)

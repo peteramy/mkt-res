@@ -17,16 +17,21 @@ public class MktResInvEvent extends MktModel { // 3.1.5. 营销资源库存发�
     private Long mktResEventId; // 营销资源库存 变动事件标识:营销资源库存变动事 件标识,主键
     private Long mktResStoreId; // 营销资源仓库 标识:记录事件发生前的营销资源仓库标识
     @Length(max = 30)
+    @Column(length = 30)
     private String mktResEventNbr; // 营销资源库存 事件编码:营销资源库存变动事件编码
     @Length(max = 250)
+    @Column(length = 250)
     private String mktResEventName; // 营销资源库存 事件名称: 记录营销资源库存事件名称名称。
     private Long destStoreId; // 目标营销资源 仓库: 目标营销资源仓库标 识
     private Long objId; // 对象标识: 记录触发事件的资源 申请单标识、订单项 标识等 20150325
     @Length(max = 10)
+    @Column(length = 10)
     private String objType; // 对象类型:  述触发事件的对象 类型:资源申请单,订 单项等。LOVB=RES-C- 0006
     @Length(max = 3)
+    @Column(length = 3)
     private String eventType; // 事件类型:事件类型，记录入库、 出库、调拨、订单等 触发的事件类型， LOVB=RES-C-0024
     @Length(max = 4000)
+    @Column(length = 4000, columnDefinition = "text")
     private String eventDesc; // 事件 述:记录事件 述信息
     private Long staffId; // 员工标识: 记录经办人。修改为 关联参与人标识， HANDLER-->PARTY_ID
     private Date acceptDate;//受理时间:记录受理时间

@@ -19,6 +19,7 @@ public class MktResExtAttr extends MktModel{ //3.1.47. 营销资源附加属性
     private Long attrId; //属性标识:记录属性标识。。
     private Long attrValueId; //属性值标识:记录属性值标识。
     @Length(max = 30)
+    @Column(length = 30)
     private String attrValue; //属性值:记录附加属性值。
     private Long applyRegionId; //适用区域标识:记录适用区域标识。
 

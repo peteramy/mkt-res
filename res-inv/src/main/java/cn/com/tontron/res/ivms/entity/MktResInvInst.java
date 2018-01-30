@@ -15,6 +15,7 @@ public class MktResInvInst extends MktResModel { // 3.1.1. 营销资源发票实
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResInvInstId; // 营销资源发票 实例标识：营销资源实例的标 识，主键
     @Length(max = 20)
+    @Column(length = 20)
     private String invoiceCode; // 发票代码：记录营销资源实例的 发票代码，计费建议。
     private Long invStaNum; // 起始票号：记录一本非专票的发 票实例的最初的票 号。
     private Long invEndNum; // 结束票号：记录一本非专票的发 票实例的最后一张的 票号，如一本是 100 张，则结束票号等与 开始票号+100。
@@ -23,6 +24,7 @@ public class MktResInvInst extends MktResModel { // 3.1.1. 营销资源发票实
     private Long useOrgId; // 领用组织标识:记录当前使用发票的 员工的当前组织标 识，以便计费打印发 票使用。2015-3-20
     private Long quantity;// 数量:记录营销资源实例的 数量
     @Length(max = 3)
+    @Column(length = 2)
     private String unit; // 单位:记录发票单 位,LOVB=RES-C-0022
     private Long restQuantity; // 剩余数量:记录营销资源实例的剩余数量，针对无序资源。
     private Long rootInstId; // 根实例标识:根资源实例的标识，资源拆分时，记录最初的资源实例标识，便于 述新实例的来源

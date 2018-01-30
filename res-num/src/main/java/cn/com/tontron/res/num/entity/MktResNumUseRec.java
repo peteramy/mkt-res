@@ -18,6 +18,7 @@ public class MktResNumUseRec extends MktModel { // 3.1.29. 营销资源号码使
     private Long mktResNumUseRecId; // 号码使用记录 标识:营销资源使用记录 ID 的标识，主键
     private Long mktResInstId; // 营销资源实例 标识:记录营销资源实例 ID
     @Length(max = 3)
+    @Column(length = 3)
     private String objType; // 营销资源使用 对象类型:记录营销资源使用对 象类型:产品实例， 订单项等。LOVB=RES- C-0004
     private Long objId; // 营销资源使用 对象标识: 记录营销资源使用对 象 ID 标 示 ; MKT_RES_OBJ_ID--》 _OBJ_ID
     private Long mktResEventId; // 营销资源库存 变动事件标识: 营销资源库存变动事件标识

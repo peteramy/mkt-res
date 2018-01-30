@@ -16,10 +16,13 @@ public class LocalHlr extends MktModel{ //3.1.36. 归属 HLR
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long hlrId; //网元标识:HLR 标识
     @Length(max = 250)
+    @Column(length = 250)
     private String hlrName; //网元名称:网元名称
     @Length(max = 10)
+    @Column(length = 10)
     private String hlrType; //网元类型:记录网元类型
     @Length(max = 32)
+    @Column(length = 32)
     private String hlrNbr; //网元编码:记录网元编码
     private Long regionId; // 区域标识: 指向公共管理区域标识
     private Long lanId; // 本地网标识: 记录本地网标识

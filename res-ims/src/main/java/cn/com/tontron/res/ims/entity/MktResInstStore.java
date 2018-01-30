@@ -21,6 +21,7 @@ public class MktResInstStore extends MktModel { //3.1.43. 营销资源库存
     private Long mktResStoreId; //营销资源仓库标识:营销资源仓库标识
     private Long quantity; //数量:记录营销资源实例的数量
     @Length(max = 3)
+    @Column(length = 3)
     private String unit; //单位:记录营销资源实例的数量单位
     private Long restQuantity; //剩余数量:记录营销资源实例的剩余数量，针对无序资源。
     private Long onwayQuantity; //在途数量:记录营销资源实例的在途数量

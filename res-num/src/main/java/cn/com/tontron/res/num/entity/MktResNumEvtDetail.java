@@ -19,6 +19,7 @@ public class MktResNumEvtDetail extends MktModel{ //3.1.30. 营销资源库存�
     private Long mktResInstId; //营销资源实例标识:营销资源实例标识
     private Long mktResEventId; //营销资源库存变动事件标识:营销资源库存变动事件标识
     @Length(max = 10)
+    @Column(length = 10)
     private String chngType; //出入库类型:记录出入库类型， LOVB=RES-0006
     private Long lanId; // 本地网标识: 记录本地网标识
     private Long regionId; // 区域标识: 指向公共管理区域标识

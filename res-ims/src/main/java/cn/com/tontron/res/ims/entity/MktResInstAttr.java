@@ -18,6 +18,7 @@ public class MktResInstAttr extends MktModel { // 3.1.25. 营销资源实例属�
     private Long attrId; // 属性标识
     private Long attrValueId; // 属性值标识
     @Length(max = 30)
+    @Column(length = 30)
     private String attrValue; // 属性值
     private Long lanId; // 本地网标识
     private Long regionId; // 区域标识

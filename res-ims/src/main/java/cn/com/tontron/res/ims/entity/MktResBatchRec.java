@@ -17,6 +17,7 @@ public class MktResBatchRec extends MktModel { // 3.1.6. 营销资源管理批�
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResBatchId; //资源管理批次标识:来源于物资管理系统时产生的数据
     @Length(max = 30)
+    @Column(length = 30)
     private Long mktResBatchNbr; //资源管理批次编码:资源管理批次编码，如外系统同步的批次号
     private Long mktResId; //营销资源标识：营销资源标识
     private Long costPrise; //成本价格:记录营销资源批次的成本价格

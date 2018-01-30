@@ -17,17 +17,22 @@ public class MktResource extends MktModel { // 3.1.7. 营销资源
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResId; //营销资源标识:营销资源标识
     @Length(max = 30)
+    @Column(length = 30)
     private String mktResNbr; //营销资源编码:记录营销资源编码。
     private Long mktResTypeId; //营销资源类别标识:营销资源类别标识
     private Long mktResExttypeId; //营销资源型号标识:营销资源型号标识
     @Length(max = 250)
+    @Column(length = 250)
     private String mktResName; //营销资源名称:记录营销资源名称。
     @Length(max = 4000)
+    @Column(length = 4000, columnDefinition = "text")
     private String mktResDesc; //营销资源描述:营销资源描述
     private Long mktPricingPlanId; //营销资源定价计划标识:记录计费域的营销资源定价计划标识。20150421。
     @Length(max = 3)
+    @Column(length = 3)
     private String unit; //单位:记录营销资源实例的数量单位。LOVB=RES-C-0001
     @Length(max = 10)
+    @Column(length = 10)
     private String orderedFlag; //序列化标识:记录序列化标识，以区分有序资源和无序资源。LOVB=RES-0004
     private Long manageRegionId; //管理区域标识:记录管理区域标识。
     private Date effDate; //生效时间:记录生效时间。

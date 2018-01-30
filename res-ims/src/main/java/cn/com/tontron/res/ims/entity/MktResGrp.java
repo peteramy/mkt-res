@@ -16,8 +16,10 @@ public class MktResGrp extends MktModel { //3.1.39. 营销资源组
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mktResGrpId; //营销资源组标识:营销资源组标识，主键。
     @Length(max = 50)
+    @Column(length = 50)
     private String mktResGrpName; //营销资源组名称:营销资源组名称
     @Length(max = 250)
+    @Column(length = 250)
     private String mktResGrpDesc; //营销资源组描述:营销资源组描述
     private Long applyRegionId; //适用区域标识:记录适用的区域范围，来源COMMON_REGION_ID。
 
