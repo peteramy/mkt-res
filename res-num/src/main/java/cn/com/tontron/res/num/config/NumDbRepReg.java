@@ -25,6 +25,11 @@ public class NumDbRepReg {
         return new JpaRepositoryImpl(LocalHead.class, entityManager);
     }
 
+    @Bean(name = "localHlrRepo")
+    public JpaRepositoryImpl localHlrRepo() {
+        return new JpaRepositoryImpl(LocalHlr.class, entityManager);
+    }
+
     @Bean(name = "mktResAttrFmtRelRepo")
     public JpaRepositoryImpl mktResAttrFmtRelRepo() {
         return new JpaRepositoryImpl(MktResAttrFmtRel.class, entityManager);

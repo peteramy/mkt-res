@@ -18,11 +18,6 @@ public class ImsDbRepReg {
     @Autowired
     private EntityManager entityManager;
 
-    @Bean(name = "localHlrRepo")
-    public JpaRepositoryImpl localHlrRepo() {
-        return new JpaRepositoryImpl(LocalHlr.class, entityManager);
-    }
-
     @Bean(name = "mktResAttrRepo")
     public JpaRepositoryImpl mktResAttrRepo() {
         return new JpaRepositoryImpl(MktResAttr.class, entityManager);
