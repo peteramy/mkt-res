@@ -15,11 +15,13 @@ import java.util.Date;
 @Entity
 public class LogLog extends AutoModel {
     private String ms;
-    @Length(max = 4000)
-    @Column(length = 4000, columnDefinition = "text")
+    private String transactionId;
+    @Length(max = 20000)
+    @Column(length = 20000, columnDefinition = "text")
     private String msg;
     private String status;
     private Date date;
+    private String remark;
 
     public String getMs() {
         return ms;
@@ -51,5 +53,21 @@ public class LogLog extends AutoModel {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
     }
 }
