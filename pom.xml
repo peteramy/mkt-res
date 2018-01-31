@@ -19,6 +19,7 @@
         <module>res-auth</module>
         <module>res-logis</module>
         <module>res-inv</module>
+        <module>res-log</module>
     </modules>
 
     <parent>

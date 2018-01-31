@@ -1,4 +1,4 @@
-package cn.com.tontron.res.ims.entity;
+package cn.com.tontron.res.num.entity;
 
 import cn.com.tontron.res.common.base.entity.MktModel;
 import org.hibernate.validator.constraints.Length;
