@@ -22,28 +22,28 @@ public class ResAuthShareProvider {
     @Autowired
     private MsCallService msCallService;
 
-    @MsApi(apiCode = "99999900100001")
+    @MsApi(apiCode = "99999901010001")
     public MsRspSendMsg findUserByName(MsReqReceiveMsg reqMsg) {
         String username = reqMsg.getSvcCont().getRequestObject().get("username").asText();
         AuthUser user = userService.findByName(username);
         return msCallService.rspAssemble(user, reqMsg);
     }
 
-    @MsApi(apiCode = "99999900100002")
+    @MsApi(apiCode = "99999901010002")
     public MsRspSendMsg findUserPage(MsReqReceiveMsg reqMsg) {
         String username = reqMsg.getSvcCont().getRequestObject().get("username").asText();
         AuthUser user = userService.findByName(username);
         return msCallService.rspAssemble(user, reqMsg);
     }
 
-    @MsApi(apiCode = "99999900100003")
+    @MsApi(apiCode = "99999901010003")
     public MsRspSendMsg saveUser(MsReqReceiveMsg reqMsg) {
         String username = reqMsg.getSvcCont().getRequestObject().get("username").asText();
         AuthUser user = userService.findByName(username);
         return msCallService.rspAssemble(user, reqMsg);
     }
 
-    @MsApi(apiCode = "99999900100004")
+    @MsApi(apiCode = "99999901010004")
     public MsRspSendMsg deleteUser(MsReqReceiveMsg reqMsg) {
         String username = reqMsg.getSvcCont().getRequestObject().get("username").asText();
         AuthUser user = userService.findByName(username);

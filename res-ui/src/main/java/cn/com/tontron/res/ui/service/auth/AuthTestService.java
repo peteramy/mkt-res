@@ -21,7 +21,7 @@ public class AuthTestService {
     private MsCallService msCallService;
 
     public JsonNode findByUsername(String s) {
-        MsRspReceiveMsg o = msCallService.send(ResMs.ui, ResMs.auth, "99999900100001", "username", s);
+        MsRspReceiveMsg o = msCallService.send(ResMs.ui, ResMs.auth, "99999901010001", "username", s);
         return o.getSvcCont().getResultObject();
     }
 }
