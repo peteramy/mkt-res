@@ -19,8 +19,8 @@ public class InvDbRepReg {
     private EntityManager entityManager;
 
 
-    @Bean(name = "Repo")
-    public JpaRepositoryImpl Repo() {
+    @Bean(name = "mktResInvEventRepo")
+    public JpaRepositoryImpl mktResInvEventRepo() {
         return new JpaRepositoryImpl(MktResInvEvent. class,entityManager);
     }
 
