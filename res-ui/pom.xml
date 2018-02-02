@@ -38,42 +38,27 @@
         <!-- 单独部署启动时去掉以下依赖 -->
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-auth</artifactId>
+            <artifactId>res-com-auth</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-ims</artifactId>
+            <artifactId>res-com-ims</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-other</artifactId>
+            <artifactId>res-com-num</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-num</artifactId>
+            <artifactId>res-com-card</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-term</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-card</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-inv</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-logis</artifactId>
+            <artifactId>res-com-card</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

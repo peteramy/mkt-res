@@ -1,46 +1,16 @@
 package cn.com.tontron.res.common.base.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-
-@MappedSuperclass
-public class AutoModel implements Dto {
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.AUTO
-    )
+/**
+ * Created by yangyang on 2018/2/2.
+ */
+public class AutoModel {
     private Long id;
 
-    public AutoModel() {
-    }
-
-    public AutoModel(Long id) {
-        this.setId(id);
-    }
-
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
-
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        } else if (other != null && other.getClass().isAssignableFrom(this.getClass())) {
-            Long otherId = ((AutoModel) other).getId();
-            return this.id == null ? false : (otherId == null ? false : this.id.equals(otherId));
-        } else {
-            return false;
-        }
-    }
-
-    public int hashCode() {
-        return this.id == null ? super.hashCode() : this.id.hashCode();
-    }
 }
-

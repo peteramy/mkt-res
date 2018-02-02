@@ -1,10 +1,7 @@
 package cn.com.tontron.res.common.base.form;
 
-import cn.com.tontron.res.common.base.jpa.DSLPageRequest;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Sort;
 
 import java.util.Map;
 
@@ -41,17 +38,5 @@ public class SearchForm {
 
     public int getOffset() {
         return (this.pageNo - 1) * this.pageSize;
-    }
-
-    public DSLPageRequest asDslPageRequest() {
-        DSLPageRequest dslPageRequest = new DSLPageRequest(pageNo - 1, pageSize);
-        if (order != null && order.size() > 0) {
-            for (String key : order.keySet()) {
-                Sort.Order sortOrder = new Sort.Order(StringUtils.equals(order.get(key), "asc")
-                        ? Sort.Direction.ASC : Sort.Direction.DESC, key);
-                dslPageRequest.addOrderBy(sortOrder);
-            }
-        }
-        return dslPageRequest;
     }
 }
