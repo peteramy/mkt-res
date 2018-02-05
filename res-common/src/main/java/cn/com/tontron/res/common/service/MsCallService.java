@@ -2,6 +2,7 @@ package cn.com.tontron.res.common.service;
 
 import cn.com.tontron.res.common.base.entity.ResMs;
 import cn.com.tontron.res.common.component.EasyJsonComponent;
+import cn.com.tontron.res.common.component.HttpComponent;
 import cn.com.tontron.res.common.message.req.*;
 import cn.com.tontron.res.common.message.rsp.MsRspReceiveMsg;
 import cn.com.tontron.res.common.message.rsp.MsRspSendMsg;
@@ -10,6 +11,8 @@ import cn.com.tontron.res.common.ms.MsProvider;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
@@ -20,6 +23,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
@@ -32,12 +36,15 @@ import java.util.Map;
 @Transactional
 public class MsCallService {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private ApplicationContext applicationContext;
     @Autowired
     private Environment environment;
     @Autowired
     private EasyJsonComponent easyJsonComponent;
+    @Autowired
+    private HttpComponent httpComponent;
     @Value("${spring.ms.modal}")
     private String msModal;
     @Value("${res.mq.exchange}")
@@ -69,11 +76,13 @@ public class MsCallService {
     }
 
     public MsRspReceiveMsg send(ResMs from, ResMs to, String api, Object args) {
+        // 组装TcpCont
         TcpCont tcpCont = new TcpCont();
         tcpCont.setApiCode(api);
         tcpCont.setSvcCode(api.substring(0, 10));
         tcpCont.setAppKey(environment.getProperty("res.ms." + from.name() + ".appkey"));
         // TODO:
+
         if (to != null && contextType()) {
             SvcContReceive contReceive = new SvcContReceive();
             JsonNode jsonNode = easyJsonComponent.readTree(easyJsonComponent.toJson(args));
@@ -82,33 +91,46 @@ public class MsCallService {
             MsRspSendMsg rspMsg = process(to, msg, MsProvider.Type.Share);
             String repStr = easyJsonComponent.toJson(rspMsg);
             return rspAssemble(repStr);
-        } else {// MQ
-            AmqpTemplate template = applicationContext.getBean(AmqpTemplate.class);
-            if (template != null) {
-                SvcContSend contSend = new SvcContSend();
-                contSend.setRequestObject(args);
-                MsReqSendMsg msg = new MsReqSendMsg(tcpCont, contSend);
-                MessageProperties messageProperties = new MessageProperties();
-                byte[] msgBody = new byte[0];
-                try {
-                    msgBody = easyJsonComponent.toJson(msg).getBytes("utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                Message message = new Message(msgBody, messageProperties);
-                ImmutablePair<String, String> routingInfo = mqRoutingInfo(to, api);
-                Message respMsg = template.sendAndReceive(routingInfo.getLeft(), routingInfo.getRight(), message);
-                if (respMsg != null && respMsg.getBody() != null && respMsg.getBody().length > 0) {
-                    try {
-                        String rspBody = new String(respMsg.getBody(), "utf-8");
-                        return rspAssemble(rspBody);
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
+        } else { // 通过接口调用
+            MsInterfaceType msType = msInterType(to, api);
+            SvcContSend contSend = new SvcContSend();
+            contSend.setRequestObject(args);
+            MsReqSendMsg msg = new MsReqSendMsg(tcpCont, contSend);
+            String jsonMsg = easyJsonComponent.toJson(msg);
+            String rspBody = null;
+            switch (msType) {
+                case MQ:
+                    AmqpTemplate template = applicationContext.getBean(AmqpTemplate.class);
+                    if (template != null) {
+                        MessageProperties messageProperties = new MessageProperties();
+                        byte[] msgBody = new byte[0];
+                        try {
+                            msgBody = jsonMsg.getBytes("utf-8");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                        Message message = new Message(msgBody, messageProperties);
+                        ImmutablePair<String, String> routingInfo = mqRoutingInfo(to, api);
+                        Message respMsg = template.sendAndReceive(routingInfo.getLeft(), routingInfo.getRight(), message);
+                        if (respMsg != null && respMsg.getBody() != null && respMsg.getBody().length > 0) {
+                            try {
+                                rspBody = new String(respMsg.getBody(), "utf-8");
+                            } catch (UnsupportedEncodingException e) {
+                                logger.error(e.getMessage());
+                                e.printStackTrace();
+                            }
+                        }
                     }
-                }
+                    break;
+                case REST:
+                    ImmutablePair<String, RequestMethod> urlInfo = restUrlInfo(to, api);
+                    rspBody = httpComponent.call(urlInfo.getRight(), urlInfo.getLeft(), jsonMsg);
+                    break;
+                default:
+                    break;
             }
+            return rspAssemble(rspBody);
         }
-        return null;
     }
 
     public MsRspSendMsg rspAssemble(Object o, MsReqReceiveMsg req) {
@@ -118,8 +140,14 @@ public class MsCallService {
     }
 
     private MsRspReceiveMsg rspAssemble(String str) {
-        JsonNode node = easyJsonComponent.readTree(str);
-        return new MsRspReceiveMsg(node);
+        MsRspReceiveMsg rspReceiveMsg;
+        if (StringUtils.isNotEmpty(str)) {
+            JsonNode node = easyJsonComponent.readTree(str);
+            rspReceiveMsg = new MsRspReceiveMsg(node);
+        } else {
+            rspReceiveMsg = new MsRspReceiveMsg();
+        }
+        return rspReceiveMsg;
     }
 
     /*
@@ -183,6 +211,14 @@ public class MsCallService {
         return "context".equals(msModal);
     }
 
+    private MsInterfaceType msInterType(ResMs ms, String apiKey) {
+        if (apiKey.startsWith("99999900")) { // 数据层
+            return MsInterfaceType.REST;
+        }
+        // TODO: 添加其他通过rest方式调用的ms的信息
+        return MsInterfaceType.MQ;
+    }
+
     private ImmutablePair<String, String> mqRoutingInfo(ResMs ms, String apiKey) {
         if (ms != null) { // 中心内部调用
             String routingKey = environment.getProperty("res.ms." + ms.name() + ".mq.name");
@@ -194,4 +230,11 @@ public class MsCallService {
         }
         return new ImmutablePair<>("", "");
     }
+
+    private ImmutablePair<String, RequestMethod> restUrlInfo(ResMs ms, String apiKey) {
+        // TODO
+        return new ImmutablePair<>("", RequestMethod.GET);
+    }
+
+    private enum MsInterfaceType {MQ, REST}
 }
