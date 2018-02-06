@@ -20,12 +20,15 @@ public class AuthUserService {
 
     public AuthUser findByName(String username) {
         MsRspReceiveMsg rspMsg = msCallService.send(ResMs.auth, null, "99999900010001", "username", username);
-        if (rspMsg.getSvcCont().getResultObject() != null && rspMsg.getSvcCont().getResultObject().size() > 0) {
-            JsonNode node = rspMsg.getSvcCont().getResultObject().get(0);
-            AuthUser authUser = new AuthUser();
-            authUser.setUsername(node.get("username").asText());
-            authUser.setPassword(node.get("password").asText());
-            return authUser;
+        JsonNode reqNode = rspMsg.getSvcCont().getResultObject();
+        if (reqNode != null && reqNode.size() > 0) {
+            JsonNode rows = reqNode.get("rows");
+            if (rows != null && rows.size() > 0) {
+                AuthUser authUser = new AuthUser();
+                authUser.setUsername(rows.get(0).get("username").asText());
+                authUser.setPassword(rows.get(0).get("password").asText());
+                return authUser;
+            }
         }
         return null;
     }
