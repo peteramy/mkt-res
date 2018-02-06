@@ -36,7 +36,7 @@ public class ResDataController {
         return jpaRepository.save(easyJsonComponent.readValue(request.getInputStream(), jpaRepository.getDomainClass()));
     }
 
-    @RequestMapping(value = "/{entity}/search", method = RequestMethod.POST)
+    @RequestMapping(value = "/{entity}", method = RequestMethod.PUT)
     @ResponseBody
     public Object searchEntity(@PathVariable(value = "entity") String entity, HttpServletRequest request) throws IOException {
         IBaseService service = (IBaseService) applicationContext.getBean(entity + "Service");
