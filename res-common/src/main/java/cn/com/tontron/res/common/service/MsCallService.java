@@ -232,9 +232,13 @@ public class MsCallService {
     }
 
     private ImmutablePair<String, RequestMethod> restUrlInfo(ResMs ms, String apiKey) {
-        // TODO
-        return new ImmutablePair<>("", RequestMethod.GET);
+        return restApiMap.get(apiKey);
     }
 
     private enum MsInterfaceType {MQ, REST}
+
+    private static Map<String, ImmutablePair<String, RequestMethod>> restApiMap = new HashMap<String, ImmutablePair<String, RequestMethod>>() {{
+        put("99999900010001", new ImmutablePair<String, RequestMethod>("http://127.0.0.1:8081/authUser", RequestMethod.PUT)); // 搜索用户
+        // TODO
+    }};
 }

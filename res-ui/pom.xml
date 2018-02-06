@@ -38,7 +38,7 @@
         <!-- 单独部署启动时去掉以下依赖 -->
         <dependency>
             <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-com-auth</artifactId>
+            <artifactId>res-share-auth</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

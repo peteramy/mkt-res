@@ -31,22 +31,16 @@ public class ResAuthShareProvider {
 
     @MsApi(apiCode = "99999901010002")
     public MsRspSendMsg findUserPage(MsReqReceiveMsg reqMsg) {
-        String username = reqMsg.getSvcCont().getRequestObject().get("username").asText();
-        AuthUser user = userService.findByName(username);
-        return msCallService.rspAssemble(user, reqMsg);
+        return null;
     }
 
     @MsApi(apiCode = "99999901010003")
     public MsRspSendMsg saveUser(MsReqReceiveMsg reqMsg) {
-        String username = reqMsg.getSvcCont().getRequestObject().get("username").asText();
-        AuthUser user = userService.findByName(username);
-        return msCallService.rspAssemble(user, reqMsg);
+        return null;
     }
 
     @MsApi(apiCode = "99999901010004")
     public MsRspSendMsg deleteUser(MsReqReceiveMsg reqMsg) {
-        String username = reqMsg.getSvcCont().getRequestObject().get("username").asText();
-        AuthUser user = userService.findByName(username);
-        return msCallService.rspAssemble(user, reqMsg);
+        return null;
     }
 }

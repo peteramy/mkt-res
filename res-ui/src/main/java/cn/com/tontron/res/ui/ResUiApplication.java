@@ -15,6 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
         "cn.com.tontron.res.com.inv",
         "cn.com.tontron.res.com.num",
 
+        "cn.com.tontron.res.share.auth",
         "cn.com.tontron.res.share.card",
         "cn.com.tontron.res.share.ims",
         "cn.com.tontron.res.share.inv",
