@@ -3,7 +3,6 @@ package cn.com.tontron.res.ui.controller.admin;
 import cn.com.tontron.res.ui.controller.UIController;
 import cn.com.tontron.res.ui.message.JsonObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminController extends UIController {
     public static final String PORTAL_PREFIX = "/admin";
@@ -36,7 +37,9 @@ public class AdminController extends UIController {
             return;
         }
         if (e instanceof RuntimeException) {
-            request.getSession().setAttribute("global_error", Lists.newArrayList(e.getMessage()));
+            List<String> errList = new ArrayList<>();
+            errList.add(e.getMessage());
+            request.getSession().setAttribute("global_error", errList);
             return;
         }
         try {

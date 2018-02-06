@@ -25,6 +25,7 @@
         <module>res-bus-inv</module>
         <module>res-bus-num</module>
         <module>res-com-auth</module>
+        <module>res-data-simple</module>
     </modules>
 
     <parent>
