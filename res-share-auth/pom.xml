@@ -17,11 +17,6 @@
             <artifactId>res-common</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>cn.com.tontron.res</groupId>
-            <artifactId>res-com-auth</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
