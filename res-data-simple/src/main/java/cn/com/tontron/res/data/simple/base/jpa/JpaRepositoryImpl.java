@@ -1,6 +1,6 @@
 package cn.com.tontron.res.data.simple.base.jpa;
 
-import cn.com.tontron.res.data.simple.base.page.TablePage;
+import cn.com.tontron.res.common.base.page.TablePage;
 import com.querydsl.core.types.EntityPath;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.OrderSpecifier;
