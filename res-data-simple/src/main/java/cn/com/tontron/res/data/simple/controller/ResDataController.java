@@ -1,6 +1,8 @@
 package cn.com.tontron.res.data.simple.controller;
 
 import cn.com.tontron.res.common.component.EasyJsonComponent;
+import cn.com.tontron.res.common.message.req.MsReqReceiveMsg;
+import cn.com.tontron.res.common.service.MsCallService;
 import cn.com.tontron.res.data.simple.base.jpa.JpaRepositoryImpl;
 import cn.com.tontron.res.data.simple.service.IBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ public class ResDataController {
     private ApplicationContext applicationContext;
     @Autowired
     private EasyJsonComponent easyJsonComponent;
+    @Autowired
+    private MsCallService msCallService;
 
     @RequestMapping(value = "/{entity}/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -39,7 +43,8 @@ public class ResDataController {
     @RequestMapping(value = "/{entity}", method = RequestMethod.PUT)
     @ResponseBody
     public Object searchEntity(@PathVariable(value = "entity") String entity, HttpServletRequest request) throws IOException {
+        MsReqReceiveMsg reqMsg = easyJsonComponent.readValue(request.getInputStream(), MsReqReceiveMsg.class);
         IBaseService service = (IBaseService) applicationContext.getBean(entity + "Service");
-        return service.findAll(request);
+        return msCallService.rspAssemble(service.findAll(reqMsg), reqMsg);
     }
 }
