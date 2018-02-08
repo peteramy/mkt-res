@@ -10,7 +10,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @SpringBootApplication
 @EnableScheduling
-@ComponentScan({"cn.com.tontron.res.data.simple", "cn.com.tontron.res.common.component"})
+@ComponentScan({"cn.com.tontron.res.data.simple",
+        "cn.com.tontron.res.common.component",
+        "cn.com.tontron.res.common.service"})
 public class ResDataSimpleApp {
     public static void main(String[] args) {
         SpringApplication.run(ResDataSimpleApp.class, args);
