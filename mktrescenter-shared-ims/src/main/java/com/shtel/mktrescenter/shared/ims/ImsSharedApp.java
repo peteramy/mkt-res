@@ -6,8 +6,10 @@ import com.shtel.paas.sdk.core.PaasBaseRequest;
 import com.shtel.paas.sdk.core.PaasBaseResponse;
 import com.shtel.paas.sdk.core.RefreshableRestController;
 import com.shtel.paas.sdk.core.log.PaasLogger;
+import com.shtel.paas.sdk.core.web.client.PaasRestTemplate;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -21,6 +23,9 @@ import org.springframework.web.bind.annotation.*;
 @RefreshableRestController
 @RequestMapping("/mktrescenter/sharedservice/ims")
 public class ImsSharedApp {
+    @Autowired
+    private PaasRestTemplate restTemplate;
+
     @PostMapping("/test")
     @ApiOperation("test")
     @ResponseBody
@@ -29,6 +34,7 @@ public class ImsSharedApp {
         PaasLogger.info("调用业务服务saveSaleOrderDetail{}", req.getBody().paramInfo());
         TestDto res;
         try {
+            String result = restTemplate.getForObject("http://mktresDataIms/test/", String.class);
             res = new TestDto();
         } catch (Exception e) {
             // 异常信息抛出

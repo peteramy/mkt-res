@@ -1,4 +1,8 @@
-#启动配置
+#项目说明
+[项目文档](http://phabricator.tontron.com.cn/w/project/marketing_center/)
+#IDE配置
+安装Alibaba Java Coding Guidelines插件，通过该插件统一coding style
+#启动配置(Program arguments配置项)
 ##配置中心配置样例
 --shtelpaas.app.name=mktrescCenterDataIms    //服务单元名字，自定义，必填
 --shtelpaas.app.basepkg=com.shtel.mktrescenter.data.ims   //服务的根包路径，必填

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/mktrescenter/portalservice/ims")
 public class ImsBizApp {
     @PostMapping("test")
-    @ApiOperation("销售单校验服务")
+    @ApiOperation("测试服务")
     public TestDto test(@RequestBody TestDto req) {
         // 添加日志，标记业务处理开始。
         PaasLogger.info("test");
