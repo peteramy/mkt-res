@@ -1,6 +1,6 @@
 package com.shtel.mktrescenter.data.ims;
 
-import com.shtel.mktrescenter.data.ims.dto.TestDto;
+import com.shtel.mktrescenter.data.ims.dto.TestDTO;
 import com.shtel.paas.sdk.core.PaasBaseRequest;
 import com.shtel.paas.sdk.core.PaasBaseResponse;
 import com.shtel.paas.sdk.core.RefreshableRestController;
@@ -29,10 +29,11 @@ public class ImsDataApp {
     @PostMapping("/test")
     @ApiOperation("test")
     @ResponseBody
-    public PaasBaseResponse<TestDto> test(@RequestBody PaasBaseRequest<TestDto> req) {
+    public PaasBaseResponse<TestDTO> test(@RequestBody PaasBaseRequest<TestDTO> req) {
         //调用服务开始
         PaasLogger.info("调用服务test{}", req.getBody().paramInfo());
-        TestDto res = new TestDto();
+        TestDTO res = new TestDTO();
+        res.setMsg("msg from data service");
         return new PaasBaseResponse<>(res);
     }
 }
