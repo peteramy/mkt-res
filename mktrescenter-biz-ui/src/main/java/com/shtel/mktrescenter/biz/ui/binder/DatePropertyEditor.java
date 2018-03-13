@@ -24,10 +24,12 @@ public class DatePropertyEditor extends PropertyEditorSupport {
         this(outFmt, new String[]{outFmt});
     }
 
+    @Override
     public String getAsText() {
         return this.getValue() instanceof Date ? DateFormatUtils.format((Date) this.getValue(), this.outFmt) : super.getAsText();
     }
 
+    @Override
     public void setAsText(String value) {
         try {
             if (value != null && !value.equals("")) {

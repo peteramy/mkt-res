@@ -28,6 +28,7 @@ public class DateRangePropertyEditor extends PropertyEditorSupport {
         this(separator, outFmt, new String[]{outFmt});
     }
 
+    @Override
     public String getAsText() {
         if (this.getValue() instanceof DateRange) {
             DateRange range = (DateRange) this.getValue();
@@ -37,6 +38,7 @@ public class DateRangePropertyEditor extends PropertyEditorSupport {
         }
     }
 
+    @Override
     public void setAsText(String value) {
         try {
             if (value != null && !value.equals("")) {
