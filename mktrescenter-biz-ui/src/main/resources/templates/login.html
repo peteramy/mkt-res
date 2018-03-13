@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title th:text="${projectTitle}"></title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" th:href="@{/temp/vendor/bootstrap/css/bootstrap.min.css}" />
@@ -38,7 +38,7 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Please Sign In</h3>
+                    <h3 class="panel-title" th:text="${projectTitle}"></h3>
                 </div>
                 <div class="panel-body">
                     <form class="form-signin" role="form" name="form" th:action="@{/login}" action="/login" method="post">
