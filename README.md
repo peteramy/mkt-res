@@ -14,6 +14,11 @@
 --shtelpaas.app.basepkg=com.shtel.mktrescenter.data.ims
 --shtelpaas.app.config.mode=local
 --shtelpaas.app.nameserver=http://61.152.234.197:8761/eureka/
+##biz-ui
+--shtelpaas.app.name=mktresCenterBizUi
+--shtelpaas.app.basepkg=com.shtel.mktrescenter.biz.ui
+--shtelpaas.app.config.mode=local
+--shtelpaas.app.nameserver=http://61.152.234.197:8761/eureka/
 ##data_ims
 --shtelpaas.app.name=mktrescCenterDataIms
 --shtelpaas.app.basepkg=com.shtel.mktrescenter.data.ims

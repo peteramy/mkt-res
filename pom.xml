@@ -11,6 +11,10 @@
         <module>mktrescenter-data-ims</module>
         <module>mktrescenter-shared-ims</module>
         <module>mktrescenter-biz-ims</module>
+        <module>mktrescenter-shared-num</module>
+        <module>mktrescenter-biz-ui</module>
+        <module>mktrescenter-shared-card</module>
+        <module>mktrescenter-data-ui</module>
     </modules>
 
     <parent>
