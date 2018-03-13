@@ -2,6 +2,8 @@
 [项目文档](http://phabricator.tontron.com.cn/w/project/marketing_center/)
 #IDE配置
 安装Alibaba Java Coding Guidelines插件，通过该插件统一coding style
+#端口配置
+数据层使用807\*，共享层使用808\*，业务层使用809\*，
 #启动配置(Program arguments配置项)
 ##配置中心配置样例
 --shtelpaas.app.name=mktresCenterDataIms    //服务单元名字，自定义，必填
@@ -17,6 +19,26 @@
 ##biz-ui
 --shtelpaas.app.name=mktresCenterBizUi
 --shtelpaas.app.basepkg=com.shtel.mktrescenter.biz.ui
+--shtelpaas.app.config.mode=local
+--shtelpaas.app.nameserver=http://61.152.234.197:8761/eureka/
+##biz-ims
+--shtelpaas.app.name=mktresCenterBizIms
+--shtelpaas.app.basepkg=com.shtel.mktrescenter.biz.ims
+--shtelpaas.app.config.mode=local
+--shtelpaas.app.nameserver=http://61.152.234.197:8761/eureka/
+##shared-ims
+--shtelpaas.app.name=mktresCenterSharedIms
+--shtelpaas.app.basepkg=com.shtel.mktrescenter.shared.ims
+--shtelpaas.app.config.mode=local
+--shtelpaas.app.nameserver=http://61.152.234.197:8761/eureka/
+##shared-card
+--shtelpaas.app.name=mktresCenterSharedCard
+--shtelpaas.app.basepkg=com.shtel.mktrescenter.shared.card
+--shtelpaas.app.config.mode=local
+--shtelpaas.app.nameserver=http://61.152.234.197:8761/eureka/
+##shared-num
+--shtelpaas.app.name=mktresCenterSharedNum
+--shtelpaas.app.basepkg=com.shtel.mktrescenter.shared.num
 --shtelpaas.app.config.mode=local
 --shtelpaas.app.nameserver=http://61.152.234.197:8761/eureka/
 ##data-ui
