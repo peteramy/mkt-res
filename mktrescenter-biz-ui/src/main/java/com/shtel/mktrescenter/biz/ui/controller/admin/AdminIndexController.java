@@ -7,10 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+/**
+ * @author yangyang
+ */
 @Controller
 @RequestMapping(AdminIndexController.PORTAL_PREFIX)
 public class AdminIndexController extends AdminController {
-    private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("index")
     public void index(Model model) {

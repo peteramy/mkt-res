@@ -1,5 +1,6 @@
 package com.shtel.mktrescenter.biz.ui.base.page;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TablePage<T> {
@@ -7,6 +8,8 @@ public class TablePage<T> {
     private List<T> data;
 
     public TablePage() {
+        this.recordsTotal = 0;
+        data = new ArrayList<T>();
     }
 
     public TablePage(List<T> data, long recordsTotal) {

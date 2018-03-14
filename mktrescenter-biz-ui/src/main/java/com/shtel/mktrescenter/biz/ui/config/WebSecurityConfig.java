@@ -13,7 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * Created by yangyang on 2018/1/16.
+ *
+ * @author yangyang
+ * @date 2018/1/16
  */
 @Configuration
 @EnableWebSecurity
