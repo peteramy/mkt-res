@@ -1,0 +1,15 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shtel.mktrescenter.data.ims.repository.MktResRegionMapper">
+    <resultMap type="com.shtel.mktrescenter.data.ims.entity.MktResRegion" id="resRegion">
+        <id column="mkt_res_region_id" property="mktResRegionId"/>
+        <result column="cost_price" property="costPrice"/>
+        <result column="sales_price" property="salesPrice"/>
+        <result column="clearing_price" property="clearingPrice"/>
+    </resultMap>
+
+    <select id="getResRegion" resultMap="resRegion">
+        select * from mkt_res_region
+    </select>
+</mapper>

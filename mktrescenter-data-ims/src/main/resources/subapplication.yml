@@ -1,2 +1,9 @@
 server:
   port: 8071
+spring:
+  datasource:                           # 指定数据源
+    platform: mysql                        # 指定数据源类型
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ims
+    username: root
+    password:

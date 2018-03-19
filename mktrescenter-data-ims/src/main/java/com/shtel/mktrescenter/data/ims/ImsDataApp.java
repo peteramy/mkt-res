@@ -1,6 +1,8 @@
 package com.shtel.mktrescenter.data.ims;
 
-import com.shtel.mktrescenter.data.ims.dto.TestDTO;
+import com.shtel.mktrescenter.data.ims.dto.MktResRegionDTO;
+import com.shtel.mktrescenter.data.ims.entity.MktResRegion;
+import com.shtel.mktrescenter.data.ims.service.ResRegionService;
 import com.shtel.paas.sdk.core.PaasBaseRequest;
 import com.shtel.paas.sdk.core.PaasBaseResponse;
 import com.shtel.paas.sdk.core.RefreshableRestController;
@@ -9,10 +11,10 @@ import com.shtel.paas.sdk.core.mybatis.EnablePaasMybatis;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * ImsDataApp class
@@ -26,14 +28,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RefreshableRestController
 @RequestMapping("/mktrescenter/dataservice/ims")
 public class ImsDataApp {
-    @PostMapping("/test")
+
+    @Autowired
+    private ResRegionService resRegionService;
+
+    @GetMapping("/test")
     @ApiOperation("test")
     @ResponseBody
-    public PaasBaseResponse<TestDTO> test(@RequestBody PaasBaseRequest<TestDTO> req) {
+    public PaasBaseResponse<MktResRegionDTO> test() {
         //调用服务开始
-        PaasLogger.info("调用服务test{}", req.getBody().paramInfo());
-        TestDTO res = new TestDTO();
-        res.setMsg("msg from data service");
-        return new PaasBaseResponse<>(res);
+
+        List<MktResRegion> res = resRegionService.getResRegions();
+        return null;
     }
 }
