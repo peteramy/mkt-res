@@ -1,0 +1,9 @@
+server:
+  port: 8073
+spring:
+  datasource:                           # 指定数据源
+    platform: mysql                        # 指定数据源类型
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.0.8.31:3309/mktres_card
+    username: mktres_card
+    password: 123
