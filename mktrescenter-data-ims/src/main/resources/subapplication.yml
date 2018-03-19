@@ -4,6 +4,6 @@ spring:
   datasource:                           # 指定数据源
     platform: mysql                        # 指定数据源类型
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ims
-    username: root
-    password:
+    url: jdbc:mysql://10.0.8.31:3309/mktres_ims
+    username: mktres_ims
+    password: 123
