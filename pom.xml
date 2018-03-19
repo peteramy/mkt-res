@@ -15,6 +15,8 @@
         <module>mktrescenter-biz-ui</module>
         <module>mktrescenter-shared-card</module>
         <module>mktrescenter-data-ui</module>
+        <module>mktrescenter-data-num</module>
+        <module>mktrescenter-data-card</module>
     </modules>
 
     <parent>
